@@ -108,7 +108,7 @@ export default function SignInForm() {
           </div>
           <div className="flex gap-2">
             <h3 className="text-lg">Don&apos; have an account?</h3>
-            <Link href={"/signin"} className="text-xl text-black underline">
+            <Link href={"/signup"} className="text-xl text-black underline">
               Sign Up
             </Link>
           </div>

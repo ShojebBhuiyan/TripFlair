@@ -5,7 +5,7 @@ import Link from "next/link"
 import { NavItem } from "@/types/nav"
 import { cn } from "@/lib/utils"
 
-import { Button } from "./ui/button"
+import SignUpButton from "./signup-button"
 
 interface MainNavProps {
   items?: NavItem[]
@@ -37,7 +37,7 @@ export function MainNav({ items }: MainNavProps) {
         </nav>
       ) : null}
       <nav className="flex items-center justify-center gap-6">
-        <Button variant={"link"}>Login</Button>
+        <SignUpButton />
       </nav>
     </div>
   )
