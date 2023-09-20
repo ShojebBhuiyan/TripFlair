@@ -72,6 +72,7 @@ module.exports = {
       },
       backgroundImage: {
         landing: "url(/landing.png)",
+        worldMap: "url(/world-map.png)",
       },
     },
   },
