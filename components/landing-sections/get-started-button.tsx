@@ -10,7 +10,7 @@ export default function GetStartedButton() {
   return (
     <Button
       className="bg-transparent text-xl text-white backdrop-blur-sm hover:border hover:border-white hover:bg-transparent"
-      onClick={() => router.push("/signup")}
+      onClick={() => router.push("/location")}
     >
       Get Started
     </Button>
