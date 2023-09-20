@@ -20,7 +20,7 @@ export function MainNav({ items }: MainNavProps) {
         <Image src="/logo.png" width={128} height={128} alt="logo" />
       </Link>
       {items?.length ? (
-        <nav className="flex w-full justify-center gap-6">
+        <nav className="flex w-full justify-center gap-32">
           {items?.map(
             (item, index) =>
               item.href && (
@@ -28,7 +28,7 @@ export function MainNav({ items }: MainNavProps) {
                   key={index}
                   href={item.href}
                   className={cn(
-                    "flex items-center text-sm font-medium text-muted-foreground",
+                    "flex items-center text-sm font-medium text-foreground",
                     item.disabled && "cursor-not-allowed opacity-80"
                   )}
                 >
