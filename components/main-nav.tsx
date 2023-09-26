@@ -1,14 +1,14 @@
-import * as React from "react"
-import Image from "next/image"
-import Link from "next/link"
+import * as React from "react";
+import Image from "next/image";
+import Link from "next/link";
 
-import { NavItem } from "@/types/nav"
-import { cn } from "@/lib/utils"
+import { NavItem } from "@/types/nav";
+import { cn } from "@/lib/utils";
 
-import SignUpButton from "./signup-button"
+import SignUpButton from "./signup-button";
 
 interface MainNavProps {
-  items?: NavItem[]
+  items?: NavItem[];
 }
 
 export function MainNav({ items }: MainNavProps) {
@@ -40,5 +40,5 @@ export function MainNav({ items }: MainNavProps) {
         <SignUpButton />
       </nav>
     </div>
-  )
+  );
 }
