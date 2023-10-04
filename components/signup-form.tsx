@@ -76,7 +76,7 @@ export default function SignUpForm() {
             toast({
               description: "You have successfully signed up!",
             });
-            router.replace("/location");
+            router.push("/location");
           } else {
             toast({
               variant: "destructive",

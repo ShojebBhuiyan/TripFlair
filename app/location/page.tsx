@@ -8,7 +8,7 @@ import { authOptions } from "../api/auth/[...nextauth]/options";
 export default async function LocationPage() {
   const session = await getServerSession(authOptions);
 
-  if (!session) redirect("/signin");
+  // if (!session) redirect("/signin");
   return (
     <section className="flex h-screen flex-col items-center justify-center gap-5 bg-[#D9D9D980]">
       <div className="flex flex-col justify-center">
