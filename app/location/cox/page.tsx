@@ -4,36 +4,37 @@ import CustomPlanButton from "@/components/custom-plan-button";
 import GetPlanButton from "@/components/get-plan-button";
 import SubLocationCard from "@/components/sublocation-card";
 
-export default function SunamganjPage() {
+export default function CoxsBazarPage() {
   return (
     <section className="container flex flex-col gap-20 py-10">
       <div className="flex flex-col gap-5">
         <h1 className="text-6xl font-bold">
           <span className="text-red-900">Explore</span>{" "}
-          <span className="text-green-700">Sunamganj</span>!
+          <span className="text-green-700">Cox&apos; Bazar</span>!
         </h1>
         <p className="text-2xl">
-          A scenic place full of beautiful haors, serene rivers, and culturally
-          diverse monuments, Sunamganj, situated in the Sylhet division of
-          north-eastern Bangladesh, is a place that travel enthusiasts will fall
-          in love with.
+          The longest natural sandy sea beach, Cox&apos;s Bazar is also known
+          for its scenic beauty. There are many tourist attractions like The
+          Himchori, Kutubdia Lighthouse, Safari park etc located in Cox&apos;s
+          Bazar. Tourists can enjoy their time by traveling the longest marine
+          drive, enojoy sea food and many more.
         </p>
         <div className="flex justify-around gap-5">
           <Image
-            src={"/sunam-1.png"}
-            alt="sunamganj-river-boat"
+            src={"/cox-1.png"}
+            alt="cox-sea-palm-boat"
             height={340}
             width={500}
           />
           <Image
-            src={"/sunam-2.png"}
-            alt="sunamganj-river-hill"
+            src={"/cox-2.png"}
+            alt="cox-road-sea"
             height={340}
             width={500}
           />
           <Image
-            src={"/sunam-3.png"}
-            alt="sunamganj-tree-field"
+            src={"/cox-3.png"}
+            alt="cox-sea-tree"
             height={340}
             width={500}
           />
@@ -50,24 +51,24 @@ export default function SunamganjPage() {
         </p>
         <div className="flex justify-around gap-5">
           <SubLocationCard
-            imageSource="/tanguar-haor.png"
-            location="Tanguar Haor"
-            description="Tanguar haor, located in the Dharmapasha and Tahirpur upazilas of Sunamganj District in Bangladesh, is a unique wetland ecosystem of national importance and a place of  international focus."
+            imageSource="/cox-seabeach.png"
+            location="Sea Beach"
+            description="Cox’s Bazar sea beach is the largest sea beach in the world and one of the best tourist attraction place."
           />
           <SubLocationCard
-            imageSource="/barik-tila.png"
-            location="Barik Tila"
-            description="Barik Tila is a historical place in Sunamganj, Bangladesh. It is located in the Tahirpur Upazila of Sunamganj District. It is a mound of 50 feet high and 400 feet wide."
+            imageSource="/dulahazara-safari-park.png"
+            location="Dulahazara Safari Park"
+            description="Dulahazra Safari Park is one of Bangladesh’s most unique destinations in Cox's Bazar . A place where threatened and endangered animals from all over the world is kept and safeguarded."
           />
           <SubLocationCard
-            imageSource="/jadukata-river.png"
-            location="Jadukata River"
-            description="Jadukata River is a river in Bangladesh. It is a tributary of the Surma River. It is located in the Tahirpur Upazila of Sunamganj District."
+            imageSource="/himchori.png"
+            location="Himchori"
+            description="Himchori, the only cold water waterfall in Bangladesh, is a place of natural beauty and tourist attraction."
           />
           <SubLocationCard
-            imageSource="/surma-bridge.png"
-            location="Surma Bridge"
-            description="Surma Bridge is a bridge over the Surma River in Sunamganj District, Bangladesh. It is located in the Tahirpur Upazila of Sunamganj District."
+            imageSource="/100ft-buddha.png"
+            location="100-ft. Buddha"
+            description="The 100 Feet Buddha is a golden coloured reclining statue is located at the Vimukti Bibeshan Bhabna Kendra temple in Ramu."
           />
         </div>
       </div>
