@@ -5,6 +5,7 @@ import Link from "next/link";
 import { NavItem } from "@/types/nav";
 import { cn } from "@/lib/utils";
 
+import NavbarAuthButtons from "./navbar-auth-buttons";
 import SignUpButton from "./signup-button";
 
 interface MainNavProps {
@@ -37,7 +38,7 @@ export function MainNav({ items }: MainNavProps) {
         </nav>
       ) : null}
       <nav className="flex items-center justify-center gap-6">
-        <SignUpButton />
+        <NavbarAuthButtons />
       </nav>
     </div>
   );
