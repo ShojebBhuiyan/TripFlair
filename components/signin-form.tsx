@@ -1,20 +1,21 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { useRouter } from "next/navigation"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { signIn } from "next-auth/react";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 
-import { Button } from "./ui/button"
-import { Form, FormControl, FormField, FormItem, FormMessage } from "./ui/form"
-import { Input } from "./ui/input"
-import { useToast } from "./ui/use-toast"
+import { Button } from "./ui/button";
+import { Form, FormControl, FormField, FormItem, FormMessage } from "./ui/form";
+import { Input } from "./ui/input";
+import { useToast } from "./ui/use-toast";
 
 const signinFormSchema = z.object({
   email: z.string().email(),
   password: z.string(),
-})
+});
 
 export default function SignInForm() {
   const form = useForm<z.infer<typeof signinFormSchema>>({
@@ -23,37 +24,37 @@ export default function SignInForm() {
       email: "",
       password: "",
     },
-  })
+  });
 
-  const { toast } = useToast()
-  const router = useRouter()
+  const { toast } = useToast();
+  const router = useRouter();
 
   async function onSubmit(values: z.infer<typeof signinFormSchema>) {
-    console.log(values)
-    // try {
-    //   const result = await signIn("credentials", {
-    //     ...values,
-    //     redirect: false,
-    //   });
-    //   if (result?.error) {
-    //     toast({
-    //       variant: "destructive",
-    //       description: "Invalid credentials",
-    //     });
-    //   } else {
-    //     toast({
-    //       variant: "default",
-    //       description: "Login successful!",
-    //     });
-    //     router.replace("/guided-form");
-    //   }
-    // } catch (error) {
-    //   console.log(error);
-    //   toast({
-    //     variant: "destructive",
-    //     description: "Something went wrong",
-    //   });
-    // }
+    console.log(values);
+    try {
+      const result = await signIn("credentials", {
+        ...values,
+        redirect: false,
+      });
+      if (result?.error) {
+        toast({
+          variant: "destructive",
+          description: "Invalid credentials",
+        });
+      } else {
+        toast({
+          variant: "default",
+          description: "Login successful!",
+        });
+        router.replace("/location");
+      }
+    } catch (error) {
+      console.log(error);
+      toast({
+        variant: "destructive",
+        description: "Something went wrong",
+      });
+    }
   }
   return (
     <Form {...form}>
@@ -115,5 +116,5 @@ export default function SignInForm() {
         </div>
       </form>
     </Form>
-  )
+  );
 }

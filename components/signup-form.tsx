@@ -1,15 +1,16 @@
-"use client"
+"use client";
 
-import Link from "next/link"
-import { useRouter } from "next/navigation"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { useForm } from "react-hook-form"
-import { z } from "zod"
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { ProfileType } from "@prisma/client";
+import { useForm } from "react-hook-form";
+import { z } from "zod";
 
-import { Button } from "./ui/button"
-import { Form, FormControl, FormField, FormItem, FormMessage } from "./ui/form"
-import { Input } from "./ui/input"
-import { useToast } from "./ui/use-toast"
+import { Button } from "./ui/button";
+import { Form, FormControl, FormField, FormItem, FormMessage } from "./ui/form";
+import { Input } from "./ui/input";
+import { useToast } from "./ui/use-toast";
 
 const signupFormSchema = z
   .object({
@@ -27,7 +28,7 @@ const signupFormSchema = z
   .refine((data) => data.password === data.confirmPassword, {
     message: "Passwords do not match",
     path: ["confirmPassword"],
-  })
+  });
 
 export default function SignUpForm() {
   const form = useForm<z.infer<typeof signupFormSchema>>({
@@ -37,55 +38,55 @@ export default function SignUpForm() {
       email: "",
       password: "",
     },
-  })
+  });
 
-  const { toast } = useToast()
-  const router = useRouter()
+  const { toast } = useToast();
+  const router = useRouter();
 
   async function onSubmit(values: z.infer<typeof signupFormSchema>) {
-    console.log(values)
-    // await fetch("/api/search-user", {
-    //   method: "POST",
-    //   headers: {
-    //     "Content-Type": "application/json",
-    //   },
-    //   body: JSON.stringify({
-    //     email: values.email,
-    //   }),
-    // }).then(async (res) => {
-    //   if (res.status === 200) {
-    //     toast({
-    //       variant: "warning",
-    //       description: "This email is already in use.",
-    //     });
-    //   } else {
-    //     await fetch("/api/signup", {
-    //       method: "POST",
-    //       headers: {
-    //         "Content-Type": "application/json",
-    //       },
-    //       body: JSON.stringify({
-    //         firstName: values.firstName,
-    //         lastName: values.lastName,
-    //         email: values.email,
-    //         password: values.password,
-    //       }),
-    //     }).then((res) => {
-    //       if (res.status === 200) {
-    //         toast({
-    //           description: "You have successfully signed up!",
-    //         });
-    //         router.replace("/guided-form");
-    //       } else {
-    //         toast({
-    //           variant: "destructive",
-    //           title: "Uh oh!",
-    //           description: "Something went wrong. Please try again.",
-    //         });
-    //       }
-    //     });
-    //   }
-    // });
+    console.log(values);
+    await fetch("/api/search-user", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: values.email,
+      }),
+    }).then(async (res) => {
+      if (res.status === 200) {
+        toast({
+          variant: "warning",
+          description: "This email is already in use.",
+        });
+      } else {
+        await fetch("/api/signup", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            name: values.name,
+            email: values.email,
+            password: values.password,
+            profileType: ProfileType.Traveller,
+          }),
+        }).then((res) => {
+          if (res.status === 200) {
+            toast({
+              description: "You have successfully signed up!",
+            });
+            router.replace("/location");
+          } else {
+            toast({
+              variant: "destructive",
+              title: "Uh oh!",
+              description: "Something went wrong. Please try again.",
+            });
+          }
+        });
+      }
+    });
   }
 
   return (
@@ -189,5 +190,5 @@ export default function SignUpForm() {
         </div>
       </form>
     </Form>
-  )
+  );
 }
