@@ -1,10 +1,16 @@
 import Image from "next/image";
+import { redirect } from "next/navigation";
+import { getServerSession } from "next-auth";
 
 import CustomPlanButton from "@/components/custom-plan-button";
 import GetPlanButton from "@/components/get-plan-button";
 import SubLocationCard from "@/components/sublocation-card";
+import { authOptions } from "@/app/api/auth/[...nextauth]/options";
 
-export default function CoxsBazarPage() {
+export default async function CoxsBazarPage() {
+  const session = await getServerSession(authOptions);
+
+  if (!session) redirect("/signin");
   return (
     <section className="container flex flex-col gap-20 py-10">
       <div className="flex flex-col gap-5">
