@@ -2,8 +2,6 @@
 
 import { createContext, useContext, useState } from "react";
 
-import { Location, TravelMode } from "@/types/plan";
-
 interface PlanContextType {
   location: string | undefined;
   setLocation: (location: string) => void;
