@@ -108,6 +108,11 @@ export default function SignInForm({ profileType, setPage }: SignInFormProps) {
                       placeholder="your password"
                       {...field}
                       className="bg-[#D9D9D980]/35 rounded-[1.875rem] border border-black"
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                          form.handleSubmit(onSubmit)(e);
+                        }
+                      }}
                     />
                   </FormControl>
                   <FormMessage />
