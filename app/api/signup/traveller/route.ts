@@ -1,4 +1,4 @@
-import { ProfileType } from "@prisma/client";
+import { PresentLocation, ProfileType } from "@prisma/client";
 import bcrypt from "bcrypt";
 import { v4 } from "uuid";
 
@@ -26,6 +26,11 @@ export async function POST(req: Request) {
         email: body.email,
         password: hashedPassword,
         profileType: body.profileType,
+        traveller: {
+          create: {
+            id: v4(),
+          },
+        },
       },
     });
     return new Response("Signup Confirmed!", { status: 200, statusText: "OK" });

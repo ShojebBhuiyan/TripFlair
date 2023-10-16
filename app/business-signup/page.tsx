@@ -1,12 +1,9 @@
-import PlanProvider from "@/providers/plan-provider";
-
-import PlanForm from "@/components/plan-sections/plan-form";
-import BusinessFormController from "@/components/signup-form/business/business-form-controller";
+import BusinessTypeForm from "@/components/signup-form/business/business-type-form";
 
 export default async function BusinessSignupPage() {
   return (
     <section className="container">
-      <BusinessFormController />
+      <BusinessTypeForm />
     </section>
   );
 }

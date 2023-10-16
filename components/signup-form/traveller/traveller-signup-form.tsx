@@ -70,7 +70,7 @@ export default function TravellerSignUpForm({ setPage }: SignUpFormProps) {
           description: "This email is already in use.",
         });
       } else {
-        await fetch("/api/signup", {
+        await fetch("/api/signup/traveller", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
