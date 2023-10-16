@@ -78,6 +78,7 @@ model BusinessProfile {
   businessType      BusinessType
   createdAt         DateTime           @default(now())
   updatedAt         DateTime           @updatedAt
+  onBoarded         Boolean            @default(false)
   horseRiding       HorseRiding?
   boatService       BoatService?
   restaurantService RestaurantService?
@@ -86,13 +87,28 @@ model BusinessProfile {
 }
 
 model RestaurantService {
-  id         String          @id @default(uuid()) @db.Uuid
-  business   BusinessProfile @relation(fields: [businessId], references: [id])
-  businessId String          @unique @db.Uuid
-  name       String
-  location   String
-  createdAt  DateTime        @default(now())
-  updatedAt  DateTime        @updatedAt
+  id             String               @id @default(uuid()) @db.Uuid
+  business       BusinessProfile      @relation(fields: [businessId], references: [id])
+  businessId     String               @unique @db.Uuid
+  name           String
+  location       String
+  description    String
+  subDescription String
+  contactNumber  String
+  imageUrls      String[]
+  createdAt      DateTime             @default(now())
+  updatedAt      DateTime             @updatedAt
+  menuItems      RestaurantMenuItem[]
+}
+
+model RestaurantMenuItem {
+  id           String            @id @default(uuid()) @db.Uuid
+  restaurant   RestaurantService @relation(fields: [restaurantId], references: [id])
+  restaurantId String            @unique @db.Uuid
+  name         String
+  price        Int
+  createdAt    DateTime          @default(now())
+  updatedAt    DateTime          @updatedAt
 }
 
 model HotelService {

@@ -13,7 +13,7 @@ export default async function CustomPlanPage({
 }) {
   const session = await getServerSession(authOptions);
 
-  if (!session) redirect("/signin");
+  // if (!session) redirect("/signin");
   return (
     <PlanProvider planLocation={searchParams.location}>
       <PlanForm />

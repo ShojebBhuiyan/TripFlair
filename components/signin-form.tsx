@@ -1,9 +1,10 @@
 "use client";
 
 import Link from "next/link";
-import { useRouter } from "next/navigation";
+import { useRouter, useSearchParams } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
-import { signIn } from "next-auth/react";
+import { ProfileType } from "@prisma/client";
+import { signIn, useSession } from "next-auth/react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -17,7 +18,12 @@ const signinFormSchema = z.object({
   password: z.string(),
 });
 
-export default function SignInForm() {
+interface SignInFormProps {
+  profileType: ProfileType;
+  setPage: (page: number) => void;
+}
+
+export default function SignInForm({ profileType, setPage }: SignInFormProps) {
   const form = useForm<z.infer<typeof signinFormSchema>>({
     resolver: zodResolver(signinFormSchema),
     defaultValues: {
@@ -28,14 +34,21 @@ export default function SignInForm() {
 
   const { toast } = useToast();
   const router = useRouter();
+  const searchParams = useSearchParams();
+  const callbackUrl = decodeURI(
+    (searchParams.get("callbackUrl") as string) ??
+      (profileType === ProfileType.Traveller ? "/location" : "/business")
+  );
 
   async function onSubmit(values: z.infer<typeof signinFormSchema>) {
     console.log(values);
     try {
       const result = await signIn("credentials", {
         ...values,
+        callbackUrl: callbackUrl ?? "/",
         redirect: false,
       });
+
       if (result?.error) {
         toast({
           variant: "destructive",
@@ -46,7 +59,7 @@ export default function SignInForm() {
           variant: "default",
           description: "Login successful!",
         });
-        router.replace("/location");
+        router.push(callbackUrl);
       }
     } catch (error) {
       console.log(error);
@@ -64,7 +77,7 @@ export default function SignInForm() {
       >
         <div className="flex h-full flex-col items-center justify-center space-y-2">
           <div className="mb-5 flex justify-center">
-            <h1 className="text-4xl font-bold text-black">Sign In</h1>
+            <h1 className="text-4xl font-bold text-black">{`Sign In as a ${profileType}`}</h1>
           </div>
           <div className="flex w-[30rem] flex-col items-center gap-4 rounded-[1.875rem] bg-[#D9D9D980]/25 p-20">
             <FormField
@@ -100,12 +113,22 @@ export default function SignInForm() {
                 </FormItem>
               )}
             />
-            <Button
-              type="submit"
-              className="mt-5 justify-center rounded-[0.625rem] bg-[#00A651] text-black"
-            >
-              Submit
-            </Button>
+            <div className="flex justify-center gap-5">
+              <Button
+                className="mt-5 justify-center rounded-[0.625rem] bg-[#00A651] text-black"
+                onClick={() => {
+                  setPage(0);
+                }}
+              >
+                Back
+              </Button>
+              <Button
+                type="submit"
+                className="mt-5 justify-center rounded-[0.625rem] bg-[#00A651] text-black"
+              >
+                Submit
+              </Button>
+            </div>
           </div>
           <div className="flex gap-2">
             <h3 className="text-lg">Don&apos; have an account?</h3>
