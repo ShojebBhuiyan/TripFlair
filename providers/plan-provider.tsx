@@ -26,8 +26,10 @@ interface PlanContextType {
 const PlanContext = createContext<PlanContextType | undefined>(undefined);
 
 export default function PlanProvider({
+  planLocation,
   children,
 }: {
+  planLocation: string | undefined;
   children: React.ReactNode;
 }) {
   const [location, setLocation] = useState<string | undefined>();
@@ -41,6 +43,7 @@ export default function PlanProvider({
   const [planPage, setPlanPage] = useState<number>(0);
 
   const context = {
+    planLocation,
     location,
     setLocation,
     travelMode,

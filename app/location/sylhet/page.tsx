@@ -87,7 +87,7 @@ export default function SylhetPage() {
           below to go to the next step.
         </p>
         <div className="self-end">
-          <CustomPlanButton />
+          <CustomPlanButton location="sylhet" />
         </div>
       </div>
     </section>

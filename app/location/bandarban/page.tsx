@@ -87,7 +87,7 @@ export default function BandarbanPage() {
           below to go to the next step.
         </p>
         <div className="self-end">
-          <CustomPlanButton />
+          <CustomPlanButton location="bandarban" />
         </div>
       </div>
     </section>

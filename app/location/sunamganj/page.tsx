@@ -87,7 +87,7 @@ export default function SunamganjPage() {
           below to go to the next step.
         </p>
         <div className="self-end">
-          <CustomPlanButton />
+          <CustomPlanButton location="sunamganj" />
         </div>
       </div>
     </section>

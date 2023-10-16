@@ -6,12 +6,16 @@ import PlanForm from "@/components/plan-sections/plan-form";
 
 import { authOptions } from "../api/auth/[...nextauth]/options";
 
-export default async function CustomPlanPage() {
+export default async function CustomPlanPage({
+  searchParams,
+}: {
+  searchParams: { [location: string]: string };
+}) {
   const session = await getServerSession(authOptions);
 
   if (!session) redirect("/signin");
   return (
-    <PlanProvider>
+    <PlanProvider planLocation={searchParams.location}>
       <PlanForm />
     </PlanProvider>
   );

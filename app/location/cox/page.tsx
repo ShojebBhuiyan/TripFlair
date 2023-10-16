@@ -88,7 +88,7 @@ export default function CoxsBazarPage() {
           below to go to the next step.
         </p>
         <div className="self-end">
-          <CustomPlanButton />
+          <CustomPlanButton location="coxs-bazar" />
         </div>
       </div>
     </section>
