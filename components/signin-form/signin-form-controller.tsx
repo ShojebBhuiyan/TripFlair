@@ -3,7 +3,7 @@
 import { useState } from "react";
 import { ProfileType } from "@prisma/client";
 
-import SignInForm from "../signin-form";
+import SignInForm from "./signin-form";
 import SignInTypeForm from "./signin-type-form";
 
 export default function SigninFormController() {

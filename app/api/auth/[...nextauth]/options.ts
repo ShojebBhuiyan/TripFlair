@@ -17,12 +17,24 @@ export const authOptions: NextAuthOptions = {
           profileType: ProfileType;
         };
 
-        const user = await prismaClient.user.findFirst({
-          where: {
-            email: email,
-            profileType: profileType,
-          },
-        });
+        const user =
+          profileType === ProfileType.Business
+            ? await prismaClient.user.findUnique({
+                where: {
+                  email,
+                },
+                include: {
+                  business: true,
+                },
+              })
+            : await prismaClient.user.findUnique({
+                where: {
+                  email,
+                },
+                include: {
+                  traveller: true,
+                },
+              });
 
         if (!user) {
           return null;

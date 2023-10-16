@@ -8,10 +8,16 @@ import { signIn } from "next-auth/react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import { Button } from "./ui/button";
-import { Form, FormControl, FormField, FormItem, FormMessage } from "./ui/form";
-import { Input } from "./ui/input";
-import { useToast } from "./ui/use-toast";
+import { Button } from "../ui/button";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormMessage,
+} from "../ui/form";
+import { Input } from "../ui/input";
+import { useToast } from "../ui/use-toast";
 
 const signinFormSchema = z.object({
   email: z.string().email(),
@@ -47,7 +53,6 @@ export default function SignInForm({ profileType, setPage }: SignInFormProps) {
         ...values,
         profileType,
         callbackUrl: callbackUrl ?? "/",
-        redirect: false,
       });
 
       if (result?.error) {
@@ -60,6 +65,8 @@ export default function SignInForm({ profileType, setPage }: SignInFormProps) {
           variant: "default",
           description: "Login successful!",
         });
+        console.log(callbackUrl);
+        console.log("Before push");
         router.push(callbackUrl ?? "/");
       }
     } catch (error) {

@@ -7,16 +7,16 @@ import { ProfileType } from "@prisma/client";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import { Button } from "../../ui/button";
+import { Button } from "../ui/button";
 import {
   Form,
   FormControl,
   FormField,
   FormItem,
   FormMessage,
-} from "../../ui/form";
-import { Input } from "../../ui/input";
-import { useToast } from "../../ui/use-toast";
+} from "../ui/form";
+import { Input } from "../ui/input";
+import { useToast } from "../ui/use-toast";
 
 const signupFormSchema = z
   .object({
@@ -37,10 +37,11 @@ const signupFormSchema = z
   });
 
 interface SignUpFormProps {
+  profileType: ProfileType;
   setPage: (page: number) => void;
 }
 
-export default function TravellerSignUpForm({ setPage }: SignUpFormProps) {
+export default function SignUpForm({ profileType, setPage }: SignUpFormProps) {
   const form = useForm<z.infer<typeof signupFormSchema>>({
     resolver: zodResolver(signupFormSchema),
     defaultValues: {
@@ -70,7 +71,7 @@ export default function TravellerSignUpForm({ setPage }: SignUpFormProps) {
           description: "This email is already in use.",
         });
       } else {
-        await fetch("/api/signup/traveller", {
+        await fetch("/api/signup", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
@@ -79,14 +80,16 @@ export default function TravellerSignUpForm({ setPage }: SignUpFormProps) {
             name: values.name,
             email: values.email,
             password: values.password,
-            profileType: ProfileType.Traveller,
+            profileType: profileType,
           }),
         }).then((res) => {
           if (res.status === 200) {
             toast({
               description: "You have successfully signed up!",
             });
-            router.push("/location");
+            router.push(
+              profileType === ProfileType.Traveller ? "/location" : "/business"
+            );
           } else {
             toast({
               variant: "destructive",
@@ -107,7 +110,7 @@ export default function TravellerSignUpForm({ setPage }: SignUpFormProps) {
       >
         <div className="flex h-full flex-col items-center justify-center space-y-2">
           <div className="mb-5 flex justify-center">
-            <h1 className="text-4xl font-bold text-black">Sign Up</h1>
+            <h1 className="text-4xl font-bold text-black">{`Sign Up as a ${profileType}`}</h1>
           </div>
           <div className="flex w-[30rem] flex-col items-center gap-4 rounded-[1.875rem] bg-[#D9D9D980]/25 p-20">
             <FormField

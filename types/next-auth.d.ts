@@ -7,6 +7,7 @@ interface IUser extends DefaultUser {
   name: string;
   email: string;
   profileType: ProfileType;
+  businessOnboarded?: boolean;
 }
 
 declare module "next-auth" {
