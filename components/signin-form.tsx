@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useRouter, useSearchParams } from "next/navigation";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { ProfileType } from "@prisma/client";
-import { signIn, useSession } from "next-auth/react";
+import { signIn } from "next-auth/react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
@@ -60,10 +60,7 @@ export default function SignInForm({ profileType, setPage }: SignInFormProps) {
           variant: "default",
           description: "Login successful!",
         });
-        router.push(
-          callbackUrl ??
-            (profileType === ProfileType.Traveller ? "/location" : "/business")
-        );
+        router.push(callbackUrl ?? "/");
       }
     } catch (error) {
       console.log(error);
