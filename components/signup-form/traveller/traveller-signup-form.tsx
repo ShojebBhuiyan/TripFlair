@@ -7,10 +7,16 @@ import { ProfileType } from "@prisma/client";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import { Button } from "./ui/button";
-import { Form, FormControl, FormField, FormItem, FormMessage } from "./ui/form";
-import { Input } from "./ui/input";
-import { useToast } from "./ui/use-toast";
+import { Button } from "../../ui/button";
+import {
+  Form,
+  FormControl,
+  FormField,
+  FormItem,
+  FormMessage,
+} from "../../ui/form";
+import { Input } from "../../ui/input";
+import { useToast } from "../../ui/use-toast";
 
 const signupFormSchema = z
   .object({
@@ -30,7 +36,11 @@ const signupFormSchema = z
     path: ["confirmPassword"],
   });
 
-export default function SignUpForm() {
+interface SignUpFormProps {
+  setPage: (page: number) => void;
+}
+
+export default function TravellerSignUpForm({ setPage }: SignUpFormProps) {
   const form = useForm<z.infer<typeof signupFormSchema>>({
     resolver: zodResolver(signupFormSchema),
     defaultValues: {
@@ -166,21 +176,25 @@ export default function SignUpForm() {
                 </FormItem>
               )}
             />
-            <div className="flex justify-around gap-5">
-              <Button className="rounded-[0.625rem] bg-[#00A651BA]/75 text-black hover:rounded-full">
-                Traveller
+
+            <div className="flex justify-center gap-5">
+              <Button
+                className="mt-5 justify-center rounded-[0.625rem] bg-[#00A651] text-black"
+                onClick={() => {
+                  setPage(0);
+                }}
+              >
+                Back
               </Button>
-              <Button className="rounded-[0.625rem] bg-[#00A651BA]/75 text-black hover:rounded-full">
-                Business
+              <Button
+                type="submit"
+                className="mt-5 justify-center rounded-[0.625rem] bg-[#00A651] text-black"
+              >
+                Submit
               </Button>
             </div>
-            <Button
-              type="submit"
-              className="mt-5 justify-center rounded-[0.625rem] bg-[#00A651] text-black"
-            >
-              Submit
-            </Button>
           </div>
+
           <div className="flex gap-2">
             <h3 className="text-lg">Already have an account?</h3>
             <Link href={"/signin"} className="text-xl text-black underline">
