@@ -1,3 +1,4 @@
+import { ProfileType } from "@prisma/client";
 import bcrypt from "bcrypt";
 import { NextAuthOptions } from "next-auth";
 import CredentialsProvider from "next-auth/providers/credentials";
@@ -10,14 +11,16 @@ export const authOptions: NextAuthOptions = {
       name: "Credentials",
       credentials: {},
       async authorize(credentials, req) {
-        const { email, password } = credentials as {
+        const { email, password, profileType } = credentials as {
           email: string;
           password: string;
+          profileType: ProfileType;
         };
 
         const user = await prismaClient.user.findFirst({
           where: {
             email: email,
+            profileType: profileType,
           },
         });
 
