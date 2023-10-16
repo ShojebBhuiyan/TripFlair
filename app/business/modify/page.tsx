@@ -1,4 +1,4 @@
-import BusinessTypeForm from "@/components/signup-form/business/business-type-form";
+import BusinessTypeForm from "@/components/business/business-type-form";
 
 export default async function BusinessSignupPage() {
   return (

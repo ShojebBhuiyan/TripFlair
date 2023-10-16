@@ -41,7 +41,7 @@ export default function BusinessTypeForm() {
           className="w-[5rem] text-lg"
           onClick={() =>
             router.push(
-              `/business-signup/${addHyphensToPascalCase(
+              `/business/modify/${addHyphensToPascalCase(
                 businessType?.toString()!
               )}`
             )

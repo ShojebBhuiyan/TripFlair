@@ -19,21 +19,45 @@ export async function POST(req: Request) {
   const hashedPassword = bcrypt.hashSync(body.password, salt);
 
   try {
-    const user = await prismaClient.user.create({
-      data: {
-        id: v4(),
-        name: body.name,
-        email: body.email,
-        password: hashedPassword,
-        profileType: body.profileType,
-        traveller: {
-          create: {
-            id: v4(),
+    if (body.profileType === ProfileType.Traveller) {
+      const user = await prismaClient.user.create({
+        data: {
+          id: v4(),
+          name: body.name,
+          email: body.email,
+          password: hashedPassword,
+          profileType: body.profileType,
+          traveller: {
+            create: {
+              id: v4(),
+            },
           },
         },
-      },
-    });
-    return new Response("Signup Confirmed!", { status: 200, statusText: "OK" });
+      });
+      return new Response("Signup Confirmed!", {
+        status: 200,
+        statusText: "OK",
+      });
+    } else if (body.profileType === ProfileType.Business) {
+      const user = await prismaClient.user.create({
+        data: {
+          id: v4(),
+          name: body.name,
+          email: body.email,
+          password: hashedPassword,
+          profileType: body.profileType,
+          business: {
+            create: {
+              id: v4(),
+            },
+          },
+        },
+      });
+      return new Response("Signup Confirmed!", {
+        status: 200,
+        statusText: "OK",
+      });
+    }
   } catch (error) {
     console.log(error);
     return new Response("Error", {

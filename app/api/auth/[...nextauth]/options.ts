@@ -57,6 +57,7 @@ export const authOptions: NextAuthOptions = {
     async jwt({ token, user }) {
       if (user) {
         token.profileType = user.profileType;
+        token.businessOnboarded = user.businessOnboarded;
       }
       return token;
     },

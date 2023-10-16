@@ -55,7 +55,6 @@ export default function SignUpForm({ profileType, setPage }: SignUpFormProps) {
   const router = useRouter();
 
   async function onSubmit(values: z.infer<typeof signupFormSchema>) {
-    console.log(values);
     await fetch("/api/search-user", {
       method: "POST",
       headers: {
@@ -87,9 +86,11 @@ export default function SignUpForm({ profileType, setPage }: SignUpFormProps) {
             toast({
               description: "You have successfully signed up!",
             });
-            router.push(
-              profileType === ProfileType.Traveller ? "/location" : "/business"
-            );
+            const goToUrl =
+              profileType === ProfileType.Traveller
+                ? "/location"
+                : "/business/dashboard";
+            router.push(goToUrl);
           } else {
             toast({
               variant: "destructive",

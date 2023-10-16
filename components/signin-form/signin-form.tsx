@@ -43,16 +43,17 @@ export default function SignInForm({ profileType, setPage }: SignInFormProps) {
   const searchParams = useSearchParams();
   const callbackUrl = decodeURI(
     (searchParams.get("callbackUrl") as string) ??
-      (profileType === ProfileType.Traveller ? "/location" : "/business")
+      (profileType === ProfileType.Traveller
+        ? "/location"
+        : "/business/dashboard")
   );
-  console.log(callbackUrl);
   async function onSubmit(values: z.infer<typeof signinFormSchema>) {
-    console.log(values);
     try {
       const result = await signIn("credentials", {
         ...values,
         profileType,
         callbackUrl: callbackUrl ?? "/",
+        redirect: false,
       });
 
       if (result?.error) {
@@ -65,8 +66,6 @@ export default function SignInForm({ profileType, setPage }: SignInFormProps) {
           variant: "default",
           description: "Login successful!",
         });
-        console.log(callbackUrl);
-        console.log("Before push");
         router.push(callbackUrl ?? "/");
       }
     } catch (error) {
