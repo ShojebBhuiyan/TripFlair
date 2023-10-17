@@ -32,8 +32,8 @@ export default function RestaurantInfoForm({
   const [isLocationEmpty, setIsLocationEmpty] = useState(true);
 
   return (
-    <section className="flex flex-col gap-4 py-10">
-      <div className="grid w-[40rem] grid-cols-1 items-center">
+    <section className="flex flex-col gap-10 py-10">
+      <div className="grid w-[40rem] grid-cols-1 items-center gap-5">
         <h2 className="text-xl">What is the name of your restaurant?</h2>
         <Input
           className="w-[10rem]"
@@ -46,7 +46,7 @@ export default function RestaurantInfoForm({
           }}
         />
       </div>
-      <div className="grid w-[40rem] grid-cols-1 items-center">
+      <div className="grid w-[40rem] grid-cols-1 items-center gap-5">
         <h2 className="text-xl">{"Add a slogan. (Optional)"}</h2>
         <Input
           className="w-[10rem]"
@@ -56,7 +56,7 @@ export default function RestaurantInfoForm({
           }}
         />
       </div>
-      <div className="grid w-[40rem] grid-cols-1 items-center">
+      <div className="grid w-[40rem] grid-cols-1 items-center gap-5">
         <h2 className="text-xl">Briefly describe your restaurant.</h2>
         <Input
           className="w-[10rem]"

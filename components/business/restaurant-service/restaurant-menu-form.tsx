@@ -87,7 +87,7 @@ export default function RestaurantMenuForm({
 
     const imageUrls: { pathStrings: string[] } = await response.json();
 
-    const restaurantInfo = await fetch("/api/business/modify/restaurant", {
+    const restaurantService = await fetch("/api/business/modify/restaurant", {
       method: "POST",
       body: JSON.stringify({
         userId: session.data?.user?.id,
@@ -108,7 +108,7 @@ export default function RestaurantMenuForm({
       <div className="grid w-[40rem] grid-cols-1 items-center gap-5">
         <h2 className="text-xl">Add pictures of your restaurant or menu:</h2>
         {previewImagePaths.length > 0 && (
-          <div className="flex gap-5">
+          <div className="flex gap-5 overflow-x-auto">
             {previewImagePaths.map((previewImagePath, index) => (
               <Image
                 key={index}

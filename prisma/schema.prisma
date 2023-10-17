@@ -112,13 +112,31 @@ model RestaurantMenuItem {
 }
 
 model HotelService {
-  id         String          @id @default(uuid()) @db.Uuid
-  business   BusinessProfile @relation(fields: [businessId], references: [id])
-  businessId String          @db.Uuid
-  name       String
-  location   String
-  createdAt  DateTime        @default(now())
-  updatedAt  DateTime        @updatedAt
+  id            String          @id @default(uuid()) @db.Uuid
+  business      BusinessProfile @relation(fields: [businessId], references: [id])
+  businessId    String          @db.Uuid
+  name          String
+  slogan        String?
+  location      TripLocation
+  address       String
+  perks         String[]
+  overview      String
+  checkInTime   String
+  contactNumber String
+  hotelRooms    HotelRoom[]
+  imageUrls     String[]
+  createdAt     DateTime        @default(now())
+  updatedAt     DateTime        @updatedAt
+}
+
+model HotelRoom {
+  id        String       @id @default(uuid()) @db.Uuid
+  hotel     HotelService @relation(fields: [hotelId], references: [id])
+  hotelId   String       @db.Uuid
+  type      String
+  price     Int
+  createdAt DateTime     @default(now())
+  updatedAt DateTime     @updatedAt
 }
 
 model HorseRiding {
