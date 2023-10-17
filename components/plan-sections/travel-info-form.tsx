@@ -1,7 +1,6 @@
 import { usePlan } from "@/providers/plan-provider";
 
 import { Button } from "../ui/button";
-import { DatePicker } from "../ui/date-picker";
 import { Input } from "../ui/input";
 
 export default function TravelInfoForm() {
