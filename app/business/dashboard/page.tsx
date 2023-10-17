@@ -1,13 +1,12 @@
 import { getServerSession } from "next-auth";
 
 import { BusinessResultsType } from "@/types/business";
+import { Separator } from "@/components/ui/separator";
 import RegisterBusinessButton from "@/components/business/register-business-button";
 
 import { authOptions } from "../../api/auth/[...nextauth]/options";
 
-async function getBusinessData(
-  email: string
-): Promise<BusinessResultsType | null> {
+async function getBusinessData(email: string): Promise<BusinessResultsType> {
   const res = await fetch(
     "http://localhost:3000/api/business/get-all-business",
     {
@@ -21,17 +20,23 @@ async function getBusinessData(
     }
   );
 
-  if (res.ok) {
-    const data: BusinessResultsType = await res.json();
+  const data: BusinessResultsType = await res.json();
 
-    return data;
-  } else return null;
+  return data;
 }
 
 export default async function BusinessDashboardPage() {
   const session = await getServerSession(authOptions);
-
+  console.log(session);
   const businesses = await getBusinessData(session?.user?.email!);
+  const businessesAvailable =
+    businesses.boatService.length > 0 ||
+    businesses.hotelService.length > 0 ||
+    businesses.restaurantService.length > 0 ||
+    businesses.horseRiding.length > 0 ||
+    businesses.parasailing.length > 0;
+
+  console.log(businesses);
   return (
     <div className="container flex flex-col gap-5 py-10">
       <div className="flex flex-col items-center gap-5">
@@ -39,14 +44,15 @@ export default async function BusinessDashboardPage() {
         <p className="text-3xl">Welcome {session?.user?.name}</p>
       </div>
 
-      {businesses?.onBoarded ? (
+      {businessesAvailable ? (
         <>
           {businesses.boatService.length > 0 && (
             <div>
               <h2 className="text-4xl">Boat Services</h2>
-              <div className="flex flex-col gap-2">
-                {businesses.boatService.map((boatService) => (
-                  <div className="flex flex-col gap-5">
+              <Separator className="my-5" />
+              <div className="flex flex-col gap-5">
+                {businesses?.boatService.map((boatService, index) => (
+                  <div key={index} className="flex items-center gap-5">
                     <h2 className="text-2xl">{boatService.name}</h2>
                     <p>{boatService.location}</p>
                   </div>
@@ -57,9 +63,11 @@ export default async function BusinessDashboardPage() {
           {businesses.hotelService.length > 0 && (
             <div>
               <h2 className="text-4xl">Hotel Services</h2>
-              <div className="flex flex-col gap-2">
-                {businesses.hotelService.map((hotelService) => (
-                  <div className="flex flex-col gap-5">
+              <Separator className="my-5" />
+
+              <div className="flex flex-col gap-5">
+                {businesses.hotelService.map((hotelService, index) => (
+                  <div key={index} className="flex items-center gap-5">
                     <h2 className="text-2xl">{hotelService.name}</h2>
                     <p>{hotelService.location}</p>
                   </div>
@@ -70,22 +78,28 @@ export default async function BusinessDashboardPage() {
           {businesses.restaurantService.length > 0 && (
             <div>
               <h2 className="text-4xl">Restaurant Services</h2>
-              <div className="flex flex-col gap-2">
-                {businesses.restaurantService.map((restaurantService) => (
-                  <div className="flex flex-col gap-5">
-                    <h2 className="text-2xl">{restaurantService.name}</h2>
-                    <p>{restaurantService.location}</p>
-                  </div>
-                ))}
+              <Separator className="my-5" />
+
+              <div className="flex flex-col gap-5">
+                {businesses.restaurantService.map(
+                  (restaurantService, index) => (
+                    <div key={index} className="flex items-center gap-5">
+                      <h2 className="text-2xl">{restaurantService.name}</h2>
+                      <p>{restaurantService.location}</p>
+                    </div>
+                  )
+                )}
               </div>
             </div>
           )}
           {businesses.horseRiding.length > 0 && (
             <div>
               <h2 className="text-4xl">Horse Riding Services</h2>
-              <div className="flex flex-col gap-2">
-                {businesses.horseRiding.map((horseRiding) => (
-                  <div className="flex flex-col gap-5">
+              <Separator className="my-5" />
+
+              <div className="flex flex-col gap-5">
+                {businesses.horseRiding.map((horseRiding, index) => (
+                  <div key={index} className="flex items-center gap-5">
                     <h2 className="text-2xl">{horseRiding.name}</h2>
                     <p>{horseRiding.location}</p>
                   </div>
@@ -96,9 +110,11 @@ export default async function BusinessDashboardPage() {
           {businesses.parasailing.length > 0 && (
             <div>
               <h2 className="text-4xl">Parasailing Services</h2>
-              <div className="flex flex-col gap-2">
-                {businesses.parasailing.map((parasailing) => (
-                  <div className="flex flex-col gap-5">
+              <Separator className="my-5" />
+
+              <div className="flex flex-col gap-5">
+                {businesses.parasailing.map((parasailing, index) => (
+                  <div key={index} className="flex items-center gap-5">
                     <h2 className="text-2xl">{parasailing.name}</h2>
                     <p>{parasailing.location}</p>
                   </div>
@@ -106,6 +122,9 @@ export default async function BusinessDashboardPage() {
               </div>
             </div>
           )}
+          <div className="flex justify-center">
+            <RegisterBusinessButton />
+          </div>
         </>
       ) : (
         <div className="flex flex-col items-center gap-5 py-10">

@@ -73,7 +73,7 @@ model TripPlan {
 
 model BusinessProfile {
   id                String              @id @default(uuid()) @db.Uuid
-  user              User                @relation(fields: [userId], references: [id])
+  user              User                @relation(fields: [userId], references: [id], onDelete: Cascade)
   userId            String              @unique @db.Uuid
   businessType      BusinessType?
   createdAt         DateTime            @default(now())
@@ -87,24 +87,24 @@ model BusinessProfile {
 }
 
 model RestaurantService {
-  id             String               @id @default(uuid()) @db.Uuid
-  business       BusinessProfile      @relation(fields: [businessId], references: [id])
-  businessId     String               @unique @db.Uuid
-  name           String
-  location       String
-  description    String
-  subDescription String
-  contactNumber  String
-  imageUrls      String[]
-  createdAt      DateTime             @default(now())
-  updatedAt      DateTime             @updatedAt
-  menuItems      RestaurantMenuItem[]
+  id            String               @id @default(uuid()) @db.Uuid
+  business      BusinessProfile      @relation(fields: [businessId], references: [id])
+  businessId    String               @db.Uuid
+  name          String
+  location      TripLocation
+  description   String
+  slogan        String?
+  contactNumber String
+  imageUrls     String[]
+  createdAt     DateTime             @default(now())
+  updatedAt     DateTime             @updatedAt
+  menuItems     RestaurantMenuItem[]
 }
 
 model RestaurantMenuItem {
   id           String            @id @default(uuid()) @db.Uuid
   restaurant   RestaurantService @relation(fields: [restaurantId], references: [id])
-  restaurantId String            @unique @db.Uuid
+  restaurantId String            @db.Uuid
   name         String
   price        Int
   createdAt    DateTime          @default(now())
@@ -114,7 +114,7 @@ model RestaurantMenuItem {
 model HotelService {
   id         String          @id @default(uuid()) @db.Uuid
   business   BusinessProfile @relation(fields: [businessId], references: [id])
-  businessId String          @unique @db.Uuid
+  businessId String          @db.Uuid
   name       String
   location   String
   createdAt  DateTime        @default(now())
@@ -124,7 +124,7 @@ model HotelService {
 model HorseRiding {
   id         String          @id @default(uuid()) @db.Uuid
   business   BusinessProfile @relation(fields: [businessId], references: [id])
-  businessId String          @unique @db.Uuid
+  businessId String          @db.Uuid
   name       String
   location   String
   createdAt  DateTime        @default(now())
@@ -134,7 +134,7 @@ model HorseRiding {
 model BoatService {
   id         String          @id @default(uuid()) @db.Uuid
   business   BusinessProfile @relation(fields: [businessId], references: [id])
-  businessId String          @unique @db.Uuid
+  businessId String          @db.Uuid
   name       String
   location   String
   createdAt  DateTime        @default(now())
@@ -144,7 +144,7 @@ model BoatService {
 model Parasailing {
   id         String          @id @default(uuid()) @db.Uuid
   business   BusinessProfile @relation(fields: [businessId], references: [id])
-  businessId String          @unique @db.Uuid
+  businessId String          @db.Uuid
   name       String
   location   String
   createdAt  DateTime        @default(now())

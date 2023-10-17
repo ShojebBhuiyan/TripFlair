@@ -1,9 +1,19 @@
 "use client";
 
 import { useState } from "react";
+import { TripLocation } from "@prisma/client";
+import { SelectContent } from "@radix-ui/react-select";
 
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
+import {
+  Select,
+  SelectGroup,
+  SelectItem,
+  SelectLabel,
+  SelectTrigger,
+  SelectValue,
+} from "@/components/ui/select";
 
 import { useRestaurant } from "./restaurant-provider";
 
@@ -19,6 +29,7 @@ export default function RestaurantInfoForm({
   const restaurantContext = useRestaurant();
   const [isNameEmpty, setIsNameEmpty] = useState(true);
   const [isDescriptionEmpty, setIsDescriptionEmpty] = useState(true);
+  const [isLocationEmpty, setIsLocationEmpty] = useState(true);
 
   return (
     <section className="flex flex-col gap-4 py-10">
@@ -58,15 +69,45 @@ export default function RestaurantInfoForm({
           }}
         />
       </div>
-
+      <div className="flex w-[40rem] items-center gap-5">
+        <h2 className="text-xl">Where is your restaurant located?</h2>
+        <div>
+          <Select
+            onValueChange={(value) => {
+              restaurantContext?.setLocation(
+                TripLocation[value as keyof typeof TripLocation]
+              );
+              setIsLocationEmpty(false);
+            }}
+          >
+            <SelectTrigger className="w-[10rem]">
+              <SelectValue placeholder="Select a location" />
+            </SelectTrigger>
+            <SelectContent>
+              <SelectGroup>
+                <SelectItem value={TripLocation.Bandarban}>
+                  Bandarban
+                </SelectItem>
+                <SelectItem value={TripLocation.Coxsbazar}>
+                  Cox&apos;s Bazar
+                </SelectItem>
+                <SelectItem value={TripLocation.Sunamganj}>
+                  Sunamganj
+                </SelectItem>
+                <SelectItem value={TripLocation.Sylhet}>Sylhet</SelectItem>
+              </SelectGroup>
+            </SelectContent>
+          </Select>
+        </div>
+      </div>
       <div className="flex justify-end py-10">
         <Button
           className="w-[5rem] text-lg"
           onClick={() => {
             setPage(1);
-            setProgress(33.33);
+            setProgress(50);
           }}
-          disabled={isNameEmpty || isDescriptionEmpty}
+          disabled={isNameEmpty || isDescriptionEmpty || isLocationEmpty}
         >
           Next
         </Button>

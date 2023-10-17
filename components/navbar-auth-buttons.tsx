@@ -1,5 +1,6 @@
 "use client";
 
+import { ProfileType } from "@prisma/client";
 import { signOut, useSession } from "next-auth/react";
 
 import NavButton from "./nav-button";
@@ -12,7 +13,15 @@ export default function NavbarAuthButtons() {
     <>
       {session ? (
         <>
-          <NavButton description="Profile" href="/profile" variant="outline" />
+          <NavButton
+            description="Profile"
+            href={
+              session.user?.profileType === ProfileType.Business
+                ? "/business/dashboard"
+                : "/travelboard"
+            }
+            variant="outline"
+          />
           <Button
             variant={"default"}
             className="w-[8rem] text-lg"

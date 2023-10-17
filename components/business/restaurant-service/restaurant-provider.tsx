@@ -3,6 +3,8 @@
 import { createContext, useContext, useState } from "react";
 import { TripLocation } from "@prisma/client";
 
+import { MenuItem } from "@/types/restaurant";
+
 interface RestaurantContextType {
   name: string | undefined;
   setName: (name: string) => void;
@@ -14,8 +16,8 @@ interface RestaurantContextType {
   setLocation: (location: TripLocation) => void;
   imageUrls: string[];
   setImageUrls: (imageUrls: string[]) => void;
-  menuItems: { item: string; price: number }[];
-  setMenuItems: (menuItems: { item: string; price: number }[]) => void;
+  menuItems: MenuItem[];
+  setMenuItems: (menuItems: MenuItem[]) => void;
   contactNumber: string | undefined;
   setContactNumber: (contactNumber: string) => void;
 }
@@ -34,9 +36,7 @@ export default function PlanProvider({
   const [description, setDescription] = useState<string | undefined>();
   const [location, setLocation] = useState<TripLocation | undefined>();
   const [imageUrls, setImageUrls] = useState<string[]>([]);
-  const [menuItems, setMenuItems] = useState<{ item: string; price: number }[]>(
-    []
-  );
+  const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
   const [contactNumber, setContactNumber] = useState<string | undefined>();
 
   const context = {
