@@ -12,16 +12,18 @@ async function moveFiles(files: File[], mode: UploadMode, id: string) {
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
 
-    const path = join("/public", `/${mode}`, `/${id}`);
+    const storePath = join(`/${mode}`, `/${id}`);
+    const savePath = join(`/public`, storePath);
+
     try {
-      fs.readdirSync(process.cwd() + path);
+      fs.readdirSync(process.cwd() + savePath);
     } catch (error) {
-      fs.mkdirSync(process.cwd() + path, { recursive: true });
+      fs.mkdirSync(process.cwd() + savePath, { recursive: true });
     }
 
-    writeFile(process.cwd() + path + `/${file.name}`, buffer, () => {});
+    writeFile(process.cwd() + savePath + `/${file.name}`, buffer, () => {});
 
-    paths.push(path + `/${file.name}`);
+    paths.push(savePath + `/${file.name}`);
   }
   return paths;
 }

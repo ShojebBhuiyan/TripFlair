@@ -1,5 +1,6 @@
 "use client";
 
+import { usePlan } from "@/providers/plan-provider";
 import { ProfileType } from "@prisma/client";
 import { signOut, useSession } from "next-auth/react";
 

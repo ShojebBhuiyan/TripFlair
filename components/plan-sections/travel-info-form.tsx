@@ -53,7 +53,7 @@ export default function TravelInfoForm() {
         </Button>
         <Button
           className="w-[5rem] text-lg"
-          onClick={() => planContext?.setPlanPage(2)}
+          onClick={() => planContext?.setPlanPage(3)}
         >
           Next
         </Button>

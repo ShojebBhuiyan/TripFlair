@@ -14,6 +14,7 @@ export default function LocationForm() {
   const planContext = usePlan();
   const [isSelected, setIsSelected] = useState(false);
 
+  console.log(planContext?.tripLocation);
   return (
     <section className="flex flex-col gap-4 py-10">
       <h1 className="text-4xl">What is your present location?</h1>
