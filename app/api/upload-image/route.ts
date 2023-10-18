@@ -1,4 +1,5 @@
 import fs, { writeFile } from "fs";
+import os from "os";
 import { join } from "path";
 import { NextRequest } from "next/server";
 
@@ -23,7 +24,9 @@ async function moveFiles(files: File[], mode: UploadMode, id: string) {
 
     writeFile(process.cwd() + savePath + `/${file.name}`, buffer, () => {});
 
-    paths.push(savePath + `/${file.name}`);
+    paths.push(
+      storePath + `${os.platform() === "win32" ? "\\" : "/"}${file.name}`
+    );
   }
   return paths;
 }
