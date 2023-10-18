@@ -86,17 +86,15 @@ export default function HotelInfo() {
             </TableHeader>
             <TableBody>
               {hotelRooms.map((hotelRoom) => (
-                <div className="flex gap-5">
-                  <TableRow
-                    onClick={() => {
-                      planContext?.setBookedRoom(hotelRoom);
-                      planContext?.setPlanPage(5);
-                    }}
-                  >
-                    <TableCell className="text-md">{hotelRoom.type}</TableCell>
-                    <TableCell className="text-md">{hotelRoom.price}</TableCell>
-                  </TableRow>
-                </div>
+                <TableRow
+                  onClick={() => {
+                    planContext?.setBookedRoom(hotelRoom);
+                    planContext?.setPlanPage(5);
+                  }}
+                >
+                  <TableCell className="text-md">{hotelRoom.type}</TableCell>
+                  <TableCell className="text-md">{hotelRoom.price}</TableCell>
+                </TableRow>
               ))}
             </TableBody>
           </Table>
