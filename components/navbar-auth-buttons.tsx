@@ -19,7 +19,7 @@ export default function NavbarAuthButtons() {
             href={
               session.user?.profileType === ProfileType.Business
                 ? "/business/dashboard"
-                : "/travelboard"
+                : "/traveller"
             }
             variant="outline"
           />

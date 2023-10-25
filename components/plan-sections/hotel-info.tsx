@@ -100,12 +100,12 @@ export default function HotelInfo() {
           </Table>
         </div>
       </div>
-      <div className="flex gap-5">
+      <div className="flex items-center gap-5">
         <h2 className="text-3xl">Check-In Time</h2>
         <p className="text-xl">{bookedHotel?.checkInTime}</p>
       </div>
 
-      <div className="flex gap-5">
+      <div className="flex items-center gap-5">
         <h2 className="text-3xl">Contact Number</h2>
         <p className="text-xl">{bookedHotel?.contactNumber}</p>
       </div>

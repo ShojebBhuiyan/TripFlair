@@ -13,7 +13,7 @@ async function moveFiles(files: File[], mode: UploadMode, id: string) {
     const bytes = await file.arrayBuffer();
     const buffer = Buffer.from(bytes);
 
-    const storePath = join(`/${mode}`, `/${id}`);
+    const storePath = `/${mode}/${id}`;
     const savePath = join(`/public`, storePath);
 
     try {

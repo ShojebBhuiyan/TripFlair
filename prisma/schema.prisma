@@ -67,6 +67,7 @@ model TripPlan {
   travellerId     String           @unique @db.Uuid
   tripLocation    TripLocation
   presentLocation PresentLocation
+  roomBooking     RoomBooking[]
   createdAt       DateTime         @default(now())
   updatedAt       DateTime         @updatedAt
 }
@@ -130,13 +131,32 @@ model HotelService {
 }
 
 model HotelRoom {
-  id        String       @id @default(uuid()) @db.Uuid
-  hotel     HotelService @relation(fields: [hotelId], references: [id], onDelete: Cascade)
-  hotelId   String       @db.Uuid
+  id        String        @id @default(uuid()) @db.Uuid
+  hotel     HotelService  @relation(fields: [hotelId], references: [id], onDelete: Cascade)
+  hotelId   String        @db.Uuid
   type      String
   price     Int
-  createdAt DateTime     @default(now())
-  updatedAt DateTime     @updatedAt
+  bookings  RoomBooking[]
+  createdAt DateTime      @default(now())
+  updatedAt DateTime      @updatedAt
+}
+
+model RoomBooking {
+  id           String    @id @default(uuid()) @db.Uuid
+  hotelRoom    HotelRoom @relation(fields: [hotelRoomId], references: [id])
+  hotelRoomId  String    @db.Uuid
+  tripPlan     TripPlan  @relation(fields: [tripPlanId], references: [id])
+  tripPlanId   String    @db.Uuid
+  firstName    String
+  lastName     String
+  phoneNumber  String
+  checkinDate  String
+  checkoutDate String
+  totalRoom    Int
+  cost         Int
+  confirmed    Boolean   @default(false)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
 }
 
 model HorseRiding {
