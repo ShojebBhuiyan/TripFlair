@@ -14,7 +14,9 @@ export default function CustomPlanButton({ location }: CustomPlanButtonProps) {
   return (
     <Button
       className="h-[69px] w-[285px] rounded-[29px] bg-green-700/80 text-2xl text-white"
-      onClick={() => router.push(`/custom-plan?location=${location}`)}
+      onClick={() =>
+        router.push(`/custom-plan/travel-info?location=${location}`)
+      }
     >
       Next
     </Button>

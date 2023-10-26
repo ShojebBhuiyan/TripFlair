@@ -14,6 +14,7 @@ type ModifyHotelRequestBody = {
   overview: string;
   contactNumber: string;
   checkInTime: string;
+  checkOutTime: string;
   perks: string[];
   imageUrls: string[];
   hotelRooms: HotelRoomType[];
@@ -34,6 +35,7 @@ export async function POST(request: NextRequest) {
         id: body.hotelId,
         address: body.address,
         checkInTime: body.checkInTime,
+        checkOutTime: body.checkOutTime,
         contactNumber: body.contactNumber,
         location: body.location,
         name: body.name,

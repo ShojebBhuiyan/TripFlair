@@ -1,7 +1,6 @@
 import "@/styles/globals.css";
 import { Metadata } from "next";
 import { AuthProvider } from "@/providers/auth-provider";
-import PlanProvider from "@/providers/plan-provider";
 
 import { siteConfig } from "@/config/site";
 import { fontSans } from "@/lib/fonts";
@@ -45,14 +44,12 @@ export default function RootLayout({ children }: RootLayoutProps) {
         >
           <AuthProvider>
             <ThemeProvider attribute="class" defaultTheme="light">
-              <PlanProvider>
-                <div className="relative flex min-h-screen flex-col">
-                  <SiteHeader />
-                  <div className="flex-1">{children}</div>
-                  <SiteFooter />
-                  <Toaster />
-                </div>
-              </PlanProvider>
+              <div className="relative flex min-h-screen flex-col">
+                <SiteHeader />
+                <div className="flex-1">{children}</div>
+                <SiteFooter />
+                <Toaster />
+              </div>
             </ThemeProvider>
           </AuthProvider>
         </body>

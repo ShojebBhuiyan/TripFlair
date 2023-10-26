@@ -14,9 +14,13 @@ export async function POST(req: Request) {
           userId: body.userId,
         },
       },
-      select: {
-        id: true,
-        tripLocation: true,
+      include: {
+        travelInformation: {
+          select: {
+            startDate: true,
+            returnDate: true,
+          },
+        },
       },
     });
 

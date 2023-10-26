@@ -1,15 +1,14 @@
 import { useState } from "react";
-import { usePlan } from "@/providers/plan-provider";
+import { TravelMode } from "@prisma/client";
 
-import { TravelMode } from "@/types/plan";
-
-import { Button } from "../ui/button";
-import { Label } from "../ui/label";
-import { RadioGroup, RadioGroupItem } from "../ui/radio-group";
+import { Button } from "../../ui/button";
+import { Label } from "../../ui/label";
+import { RadioGroup, RadioGroupItem } from "../../ui/radio-group";
+import { useTravel } from "./travel-provider";
 
 export default function TravelModeForm() {
   const transportModeKeys = Object.keys(TravelMode);
-  const planContext = usePlan();
+  const travelContext = useTravel();
   const [isSelected, setIsSelected] = useState(false);
 
   return (
@@ -17,7 +16,9 @@ export default function TravelModeForm() {
       <h1 className="text-4xl">How do you want to travel?</h1>
       <RadioGroup
         onValueChange={(value) => {
-          planContext?.setTravelMode(value);
+          travelContext?.setTravelMode(
+            TravelMode[value as keyof typeof TravelMode]
+          );
           setIsSelected(true);
 
           if (value === TravelMode.Bus)
@@ -46,13 +47,13 @@ export default function TravelModeForm() {
       <div className="flex justify-between py-10">
         <Button
           className="w-[5rem] text-lg"
-          onClick={() => planContext?.setPlanPage(0)}
+          onClick={() => travelContext?.setPage(0)}
         >
           Back
         </Button>
         <Button
           className="w-[5rem] text-lg"
-          onClick={() => planContext?.setPlanPage(2)}
+          onClick={() => travelContext?.setPage(2)}
           disabled={!isSelected}
         >
           Next

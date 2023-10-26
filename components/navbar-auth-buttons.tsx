@@ -1,6 +1,5 @@
 "use client";
 
-import { usePlan } from "@/providers/plan-provider";
 import { ProfileType } from "@prisma/client";
 import { signOut, useSession } from "next-auth/react";
 
@@ -19,7 +18,7 @@ export default function NavbarAuthButtons() {
             href={
               session.user?.profileType === ProfileType.Business
                 ? "/business/dashboard"
-                : "/traveller"
+                : "/traveller-dashboard"
             }
             variant="outline"
           />

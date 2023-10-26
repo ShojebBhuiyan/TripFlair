@@ -67,6 +67,7 @@ export default function HotelServiceForm({
   const [contactNumber, setContactNumber] = useState<string | undefined>();
   const [perks, setPerks] = useState<string[]>([]);
   const [checkInTime, setCheckInTime] = useState<string | undefined>();
+  const [checkOutTime, setCheckOutTime] = useState<string | undefined>();
   const [isLocationEmpty, setIsLocationEmpty] = useState(true);
   const [temporaryPerk, setTemporaryPerk] = useState<string | undefined>();
 
@@ -118,6 +119,7 @@ export default function HotelServiceForm({
         hotelRooms,
         contactNumber,
         checkInTime,
+        checkOutTime,
       }),
     });
   }
@@ -346,6 +348,14 @@ export default function HotelServiceForm({
         />
       </div>
       <div className="grid w-[40rem] grid-cols-1 items-center gap-5">
+        <h2 className="text-xl">What is your check-out time?</h2>
+        <Input
+          className="w-full"
+          type="time"
+          onChange={(e) => setCheckOutTime(e.target.value)}
+        />
+      </div>
+      <div className="grid w-[40rem] grid-cols-1 items-center gap-5">
         <h2 className="text-xl">What is your contact number?</h2>
         <Input
           className="w-full"
@@ -363,6 +373,7 @@ export default function HotelServiceForm({
             !selectedImages ||
             !contactNumber ||
             !checkInTime ||
+            !checkOutTime ||
             isLocationEmpty ||
             perks.length === 0 ||
             hotelRooms.length === 0

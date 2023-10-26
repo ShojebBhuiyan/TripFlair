@@ -1,12 +1,13 @@
 "use client";
 
 import { useState } from "react";
-import { usePlan } from "@/providers/plan-provider";
 import { zodResolver } from "@hookform/resolvers/zod";
+import { HotelRoom } from "@prisma/client";
+import { useSession } from "next-auth/react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import { Button } from "../ui/button";
+import { Button } from "../../ui/button";
 import {
   Form,
   FormControl,
@@ -14,8 +15,8 @@ import {
   FormItem,
   FormLabel,
   FormMessage,
-} from "../ui/form";
-import { Input } from "../ui/input";
+} from "../../ui/form";
+import { Input } from "../../ui/input";
 
 const bookingFormSchema = z.object({
   firstName: z.string(),
@@ -26,21 +27,49 @@ const bookingFormSchema = z.object({
   totalRoom: z.number(),
 });
 
-export default function BookingForm() {
-  const planContext = usePlan();
+interface BookingFormProps {
+  hotelId: string;
+  tripId: string;
+  hotelRoom: HotelRoom;
+  setPage: (page: number) => void;
+}
+
+export default function BookingForm({
+  hotelId,
+  tripId,
+  setPage,
+  hotelRoom,
+}: BookingFormProps) {
   const [totalRoom, setTotalRoom] = useState(0);
 
   const form = useForm<z.infer<typeof bookingFormSchema>>({
     resolver: zodResolver(bookingFormSchema),
   });
 
-  function onSubmit(values: z.infer<typeof bookingFormSchema>) {
-    planContext?.setCheckInDate(values.checkInDate);
-    planContext?.setCheckOutDate(values.checkOutDate);
-    planContext?.setHotelCost(
-      values.totalRoom * planContext.bookedRoom?.price!
-    );
-    planContext?.setPlanPage(6);
+  const session = useSession();
+
+  async function onSubmit(values: z.infer<typeof bookingFormSchema>) {
+    const booking = await fetch("/api/traveller/trips/book-hotel", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        userId: session.data?.user?.id,
+        hotelId,
+        tripId,
+        hotelRoomType: hotelRoom.type,
+        firstName: values.firstName,
+        lastName: values.lastName,
+        phoneNumber: values.phoneNumber,
+        checkInDate: values.checkInDate,
+        checkOutDate: values.checkOutDate,
+        totalRoom: values.totalRoom,
+        cost: totalRoom * hotelRoom.price,
+      }),
+    }).then(() => {
+      setPage(1);
+    });
   }
 
   return (
@@ -143,9 +172,7 @@ export default function BookingForm() {
               )}
             />
             <h3 className="text-2xl">
-              {`Your total booking cost: ${
-                planContext?.bookedRoom?.price! * totalRoom
-              }`}
+              {`Your total booking cost: ${hotelRoom.price * totalRoom}`}
             </h3>
             <Button
               type="submit"

@@ -1,13 +1,19 @@
 "use client";
 
 import { createContext, useContext, useState } from "react";
-import { HotelRoom, HotelService, TripLocation } from "@prisma/client";
+import {
+  HotelRoom,
+  HotelService,
+  PresentLocation,
+  TravelMode,
+  TripLocation,
+} from "@prisma/client";
 
 interface PlanContextType {
-  location: string | undefined;
-  setLocation: (location: string) => void;
-  travelMode: string | undefined;
-  setTravelMode: (travelMode: string) => void;
+  presentLocation: PresentLocation | undefined;
+  setPresentLocation: (presentLocation: PresentLocation) => void;
+  travelMode: TravelMode | undefined;
+  setTravelMode: (travelMode: TravelMode) => void;
   startDate: Date;
   numberOfTravellers: number;
   setNumberOfTravellers: (numberOfTravellers: number) => void;
@@ -43,8 +49,10 @@ export default function PlanProvider({
 }: {
   children: React.ReactNode;
 }) {
-  const [location, setLocation] = useState<string | undefined>();
-  const [travelMode, setTravelMode] = useState<string | undefined>();
+  const [presentLocation, setPresentLocation] = useState<
+    PresentLocation | undefined
+  >();
+  const [travelMode, setTravelMode] = useState<TravelMode | undefined>();
   const [startDate, setStartDate] = useState<Date>(new Date());
   const [startTime, setStartTime] = useState<Date>(new Date());
   const [returnDate, setReturnDate] = useState<Date>(new Date());
@@ -72,8 +80,8 @@ export default function PlanProvider({
     setBookedHotel,
     tripLocation,
     setTripLocation,
-    location,
-    setLocation,
+    presentLocation,
+    setPresentLocation,
     travelMode,
     setTravelMode,
     startDate,

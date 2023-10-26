@@ -14,7 +14,10 @@ async function moveFiles(files: File[], mode: UploadMode, id: string) {
     const buffer = Buffer.from(bytes);
 
     const storePath = `/${mode}/${id}`;
-    const savePath = join(`/public`, storePath);
+    const savePath = `/public${storePath}`;
+
+    console.log("Store path: ", storePath);
+    console.log("Save path: ", savePath);
 
     try {
       fs.readdirSync(process.cwd() + savePath);
@@ -24,9 +27,7 @@ async function moveFiles(files: File[], mode: UploadMode, id: string) {
 
     writeFile(process.cwd() + savePath + `/${file.name}`, buffer, () => {});
 
-    paths.push(
-      storePath + `${os.platform() === "win32" ? "\\" : "/"}${file.name}`
-    );
+    paths.push(`${storePath}/${file.name}`);
   }
   return paths;
 }

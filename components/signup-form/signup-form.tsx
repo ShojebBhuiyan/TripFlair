@@ -88,7 +88,7 @@ export default function SignUpForm({ profileType, setPage }: SignUpFormProps) {
             });
             const goToUrl =
               profileType === ProfileType.Traveller
-                ? "/location"
+                ? "/traveller-dashboard"
                 : "/business/dashboard";
             router.push(goToUrl);
           } else {

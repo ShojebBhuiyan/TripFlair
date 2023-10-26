@@ -1,17 +1,18 @@
 "use client";
 
 import Image from "next/image";
-import { usePlan } from "@/providers/plan-provider";
+import { useRouter } from "next/navigation";
 import { HotelService } from "@prisma/client";
 
 import { Button } from "../ui/button";
 
 interface HotelCardsProps {
+  tripId: string;
   hotel: HotelService;
 }
 
-export default function HotelCards({ hotel }: HotelCardsProps) {
-  const planContext = usePlan();
+export default function HotelCards({ tripId, hotel }: HotelCardsProps) {
+  const router = useRouter();
   return (
     <div className="container flex h-[40rem] w-[40rem] flex-col gap-2 rounded-md bg-stone-300 p-5">
       <div className="flex h-full w-full justify-center">
@@ -33,8 +34,7 @@ export default function HotelCards({ hotel }: HotelCardsProps) {
         <div className="flex h-full flex-col justify-end">
           <Button
             onClick={() => {
-              planContext?.setBookedHotel(hotel);
-              planContext?.setPlanPage(4);
+              router.push(`/hotel/${hotel.id}?tripId=${tripId}`);
             }}
           >
             Book Hotel

@@ -44,7 +44,7 @@ export default function SignInForm({ profileType, setPage }: SignInFormProps) {
   const callbackUrl = decodeURI(
     (searchParams.get("callbackUrl") as string) ??
       (profileType === ProfileType.Traveller
-        ? "/location"
+        ? "/traveller-dashboard"
         : "/business/dashboard")
   );
   async function onSubmit(values: z.infer<typeof signinFormSchema>) {
