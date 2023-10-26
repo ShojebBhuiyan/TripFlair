@@ -27,12 +27,6 @@ export default function TravelForm({ tripLocation }: TravelFormProps) {
       {travelContext.page === 1 && <TravelModeForm />}
       {travelContext.page === 2 && <TravelInfoForm />}
       {travelContext.page === 3 && <TravelInfoSuccess />}
-
-      {/* {planContext?.planPage === 3 && <HotelOptionsForm />}
-      {planContext?.planPage === 4 && <HotelInfo />}
-      {planContext?.planPage === 5 && <BookingForm />}
-      {planContext?.planPage === 6 && <BookingSuccess />} */}
-      {/* {planContext?.planPage === 6 && } */}
     </section>
   );
 }
