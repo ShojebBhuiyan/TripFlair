@@ -2,10 +2,19 @@
 
 import React from "react";
 import { useRouter } from "next/navigation";
+import { TripLocation } from "@prisma/client";
 
 import { Button } from "../../ui/button";
 
-export default function BookingSuccess() {
+interface BookingSuccessProps {
+  tripId: string;
+  tripLocation: TripLocation;
+}
+
+export default function BookingSuccess({
+  tripId,
+  tripLocation,
+}: BookingSuccessProps) {
   const router = useRouter();
   return (
     <div className="flex h-[70vh] flex-col items-center justify-center gap-5">
@@ -25,7 +34,11 @@ export default function BookingSuccess() {
           Go to Dashboard
         </Button>
         <Button
-          onClick={() => router.push("/restaurant")}
+          onClick={() =>
+            router.push(
+              `/restaurant?tripId=${tripId}&location=${tripLocation.toLowerCase()}`
+            )
+          }
           className="mt-5 rounded-[0.625rem] bg-[#00A651] text-white"
         >
           Pick a Restaurant

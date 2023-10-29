@@ -3,22 +3,22 @@ import { NextRequest } from "next/server";
 import prismaClient from "@/lib/prisma-client";
 
 type RequestBody = {
-  hotelId: string;
+  restaurantId: string;
 };
 
 export async function POST(request: NextRequest) {
   const body: RequestBody = await request.json();
 
   try {
-    const hotel = await prismaClient.hotelService.findUnique({
+    const restaurant = await prismaClient.restaurantService.findUnique({
       where: {
-        id: body.hotelId,
+        id: body.restaurantId,
       },
       include: {
-        hotelRooms: true,
+        menuItems: true,
       },
     });
-    return new Response(JSON.stringify(hotel), { status: 200 });
+    return new Response(JSON.stringify(restaurant), { status: 200 });
   } catch (error) {
     console.log(error);
     return new Response("Error", {

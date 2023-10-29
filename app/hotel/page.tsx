@@ -5,6 +5,7 @@ import HotelCards from "@/components/plan-sections/hotel-cards";
 async function fetchHotels(
   tripLocation: TripLocation
 ): Promise<HotelService[]> {
+  console.log(tripLocation);
   const res = await fetch("http://localhost:3000/api/business/get-hotels", {
     method: "POST",
     headers: {
@@ -13,6 +14,7 @@ async function fetchHotels(
     body: JSON.stringify({ tripLocation: tripLocation }),
   });
   const data: HotelService[] = await res.json();
+  console.log(data);
   return data;
 }
 

@@ -14,6 +14,8 @@ interface RestaurantContextType {
   setDescription: (description: string) => void;
   location: TripLocation | undefined;
   setLocation: (location: TripLocation) => void;
+  address: string | undefined;
+  setAddress: (address: string) => void;
   imageUrls: string[];
   setImageUrls: (imageUrls: string[]) => void;
   menuItems: MenuItem[];
@@ -35,6 +37,7 @@ export default function PlanProvider({
   const [slogan, setSlogan] = useState<string | undefined>();
   const [description, setDescription] = useState<string | undefined>();
   const [location, setLocation] = useState<TripLocation | undefined>();
+  const [address, setAddress] = useState<string | undefined>();
   const [imageUrls, setImageUrls] = useState<string[]>([]);
   const [menuItems, setMenuItems] = useState<MenuItem[]>([]);
   const [contactNumber, setContactNumber] = useState<string | undefined>();
@@ -48,6 +51,8 @@ export default function PlanProvider({
     setDescription,
     location,
     setLocation,
+    address,
+    setAddress,
     imageUrls,
     setImageUrls,
     menuItems,

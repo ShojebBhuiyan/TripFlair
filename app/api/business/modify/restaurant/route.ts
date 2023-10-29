@@ -9,6 +9,7 @@ type ModifyRestaurantRequestBody = {
   restaurantId: string;
   name: string;
   location: TripLocation;
+  address: string;
   slogan: string | null;
   description: string;
   contactNumber: string;
@@ -30,6 +31,7 @@ export async function POST(request: NextRequest) {
         id: body.restaurantId,
         name: body.name,
         location: body.location,
+        address: body.address,
         slogan: body.slogan,
         description: body.description,
         contactNumber: body.contactNumber,

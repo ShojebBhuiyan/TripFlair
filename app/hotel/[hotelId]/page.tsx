@@ -114,7 +114,11 @@ export default function HotelInfoPage({
                     <TableRow
                       onClick={() => {
                         router.push(
-                          `/custom-plan/hotel-booking?tripId=${searchParams.tripId}&hotelId=${params.hotelId}&hotelRoomId=${hotelRoom.id}`
+                          `/custom-plan/hotel-booking?tripId=${
+                            searchParams.tripId
+                          }&hotelId=${params.hotelId}&hotelRoomId=${
+                            hotelRoom.id
+                          }&location=${hotel.location.toLowerCase()}`
                         );
                       }}
                     >

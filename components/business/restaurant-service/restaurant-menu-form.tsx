@@ -96,6 +96,7 @@ export default function RestaurantMenuForm({
         slogan: restaurantContext?.slogan,
         description: restaurantContext?.description,
         location: restaurantContext?.location,
+        address: restaurantContext?.address,
         imageUrls: imageUrls.pathStrings,
         menuItems: menuItems,
         contactNumber: restaurantContext?.contactNumber,

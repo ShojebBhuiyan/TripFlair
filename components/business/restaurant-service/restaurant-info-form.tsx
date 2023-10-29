@@ -10,7 +10,6 @@ import {
   Select,
   SelectGroup,
   SelectItem,
-  SelectLabel,
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
@@ -30,6 +29,7 @@ export default function RestaurantInfoForm({
   const [isNameEmpty, setIsNameEmpty] = useState(true);
   const [isDescriptionEmpty, setIsDescriptionEmpty] = useState(true);
   const [isLocationEmpty, setIsLocationEmpty] = useState(true);
+  const [isAddressEmpty, setIsAddressEmpty] = useState(true);
 
   return (
     <section className="flex flex-col gap-10 py-10">
@@ -100,6 +100,19 @@ export default function RestaurantInfoForm({
           </Select>
         </div>
       </div>
+      <div className="grid w-[40rem] grid-cols-1 items-center gap-5">
+        <h2 className="text-xl">Provide the address.</h2>
+        <Input
+          className="w-[10rem]"
+          type="text"
+          onChange={(e) => {
+            restaurantContext?.setAddress(e.target.value);
+            e.target.value === ""
+              ? setIsAddressEmpty(true)
+              : setIsAddressEmpty(false);
+          }}
+        />
+      </div>
       <div className="flex justify-end py-10">
         <Button
           className="w-[5rem] text-lg"
@@ -107,7 +120,12 @@ export default function RestaurantInfoForm({
             setPage(1);
             setProgress(50);
           }}
-          disabled={isNameEmpty || isDescriptionEmpty || isLocationEmpty}
+          disabled={
+            isNameEmpty ||
+            isDescriptionEmpty ||
+            isLocationEmpty ||
+            isAddressEmpty
+          }
         >
           Next
         </Button>

@@ -15,10 +15,12 @@ interface TravelFormProps {
 export default function TravelForm({ tripLocation }: TravelFormProps) {
   const travelContext = useTravel();
 
-  console.log(tripLocation);
+  console.log(travelContext.tripLocation);
 
   travelContext?.setTripLocation(
-    TripLocation[tripLocation as keyof typeof TripLocation]
+    tripLocation === "Coxs-bazar"
+      ? TripLocation.Coxsbazar
+      : TripLocation[tripLocation as keyof typeof TripLocation]
   );
 
   return (

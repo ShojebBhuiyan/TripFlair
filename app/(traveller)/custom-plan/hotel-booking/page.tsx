@@ -1,7 +1,6 @@
-import { HotelRoom } from "@prisma/client";
+import { HotelRoom, TripLocation } from "@prisma/client";
 
 import BookingFormController from "@/components/plan-sections/hotel-booking/booking-controller";
-import BookingForm from "@/components/plan-sections/hotel-booking/booking-form";
 
 async function fetchRoomInfo(hotelRoomId: string): Promise<HotelRoom> {
   const res = await fetch("http://localhost:3000/api/business/get-hotel-room", {
@@ -18,7 +17,12 @@ async function fetchRoomInfo(hotelRoomId: string): Promise<HotelRoom> {
 export default async function HotelBookingPage({
   searchParams,
 }: {
-  searchParams: { hotelId: string; tripId: string; hotelRoomId: string };
+  searchParams: {
+    hotelId: string;
+    tripId: string;
+    hotelRoomId: string;
+    location: string;
+  };
 }) {
   const room = await fetchRoomInfo(searchParams.hotelRoomId);
   console.log(room);
@@ -28,6 +32,12 @@ export default async function HotelBookingPage({
       hotelRoom={room}
       hotelId={searchParams.hotelId}
       tripId={searchParams.tripId}
+      tripLocation={
+        TripLocation[
+          (searchParams.location.charAt(0).toUpperCase() +
+            searchParams.location.slice(1)) as keyof typeof TripLocation
+        ]
+      }
     />
   );
 }

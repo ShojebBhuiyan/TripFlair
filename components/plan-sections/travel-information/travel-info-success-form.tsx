@@ -7,7 +7,7 @@ import { Button } from "../../ui/button";
 import { useTravel } from "./travel-provider";
 
 export default function TravelInfoSuccess() {
-  const travalContext = useTravel();
+  const travelContext = useTravel();
   const router = useRouter();
   return (
     <div className="flex h-[70vh] flex-col items-center justify-center gap-5">
@@ -25,8 +25,8 @@ export default function TravelInfoSuccess() {
             onClick={() =>
               router.push(
                 `/hotel?tripId=${
-                  travalContext.tripId
-                }&location=${travalContext.tripLocation?.toLowerCase()}`
+                  travelContext.tripId
+                }&location=${travelContext.tripLocation?.toLowerCase()}`
               )
             }
             className="mt-5 rounded-[0.625rem] bg-[#00A651] text-white"

@@ -19,6 +19,11 @@ export async function POST(req: Request) {
             hotelService: true,
           },
         },
+        restaurantBooking: {
+          include: {
+            restaurant: true,
+          },
+        },
       },
     });
 

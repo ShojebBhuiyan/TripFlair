@@ -1,10 +1,11 @@
 import {
   HotelBooking,
   HotelService,
-  RestaurantBooking,
   TravelInformation,
   TripPlan,
 } from "@prisma/client";
+
+import { RestaurantBookingInfo } from "./restaurant";
 
 export type TripResultsType = {
   id: string;
@@ -22,5 +23,5 @@ export type HotelBookingInfo = HotelBooking & {
 export type TripPlanType = TripPlan & {
   travelInformation: TravelInformation;
   hotelBooking: HotelBookingInfo | null;
-  restaurantInformation: RestaurantBooking | null;
+  restaurantBooking: RestaurantBookingInfo | null;
 };

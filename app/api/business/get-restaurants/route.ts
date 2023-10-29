@@ -3,22 +3,21 @@ import { TripLocation } from "@prisma/client";
 
 import prismaClient from "@/lib/prisma-client";
 
-type GetHotelsRequestBody = {
+type GetRestaurantsRequestBody = {
   tripLocation: TripLocation;
 };
 
 export async function POST(request: NextRequest) {
-  const body: GetHotelsRequestBody = await request.json();
-  console.log(body);
+  const body: GetRestaurantsRequestBody = await request.json();
+
   try {
-    const hotels = await prismaClient.hotelService.findMany({
+    const restaurants = await prismaClient.restaurantService.findMany({
       where: {
         location: body.tripLocation,
       },
       take: 5,
     });
-    console.log(hotels);
-    return new Response(JSON.stringify(hotels), { status: 200 });
+    return new Response(JSON.stringify(restaurants), { status: 200 });
   } catch (error) {
     console.log(error);
     return new Response("Error", {

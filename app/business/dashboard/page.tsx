@@ -14,6 +14,7 @@ async function getBusinessData(email: string): Promise<BusinessResultsType> {
       headers: {
         "Content-Type": "application/json",
       },
+      cache: "no-store",
       body: JSON.stringify({
         email,
       }),

@@ -93,6 +93,40 @@ export default function PlanAccordion({ tripPlan }: PlanAccordionProps) {
           )}
         </AccordionContent>
       </AccordionItem>
+      <AccordionItem value="restaurant">
+        <AccordionTrigger className="text-4xl">
+          Restaurant Information
+        </AccordionTrigger>
+        <AccordionContent>
+          {tripPlan.restaurantBooking ? (
+            <div className="flex flex-col gap-4">
+              <h1 className="text-2xl">
+                {`Restaurant name: ${tripPlan?.restaurantBooking.restaurantService.name}`}
+              </h1>
+              <h1 className="text-2xl">
+                {`Restaurant address: ${tripPlan?.restaurantBooking.restaurantService.address}`}
+              </h1>
+              <h1 className="text-2xl">
+                {`Hotel Contact Number: ${tripPlan?.restaurantBooking.restaurantService.contactNumber}`}
+              </h1>
+            </div>
+          ) : (
+            <div className="flex flex-col gap-4">
+              <h1 className="text-2xl">No Restaurant Information</h1>
+              <Link
+                className="self-center"
+                href={`/restaurant?location=${tripPlan.tripLocation.toLowerCase()}&tripId=${
+                  tripPlan.id
+                }`}
+              >
+                <Button variant={"link"} className="text-2xl">
+                  Book a Restaurant
+                </Button>
+              </Link>
+            </div>
+          )}
+        </AccordionContent>
+      </AccordionItem>
     </Accordion>
   );
 }
