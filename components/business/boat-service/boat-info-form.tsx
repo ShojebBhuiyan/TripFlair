@@ -167,10 +167,12 @@ export default function BoatInfoForm({
           <Button
             className="mt-5 rounded-[0.625rem] bg-[#00A651] text-black"
             onClick={() => {
-              if (temporaryPerk?.length! > 0)
+              if (temporaryPerk?.length! > 0) {
                 setPerks([...perks, temporaryPerk!]);
+                boatContext.setPerks([...perks, temporaryPerk!]);
+              }
               setTemporaryPerk("");
-              boatContext?.setPerks(perks);
+
               setIsPerksEmpty(false);
             }}
           >
