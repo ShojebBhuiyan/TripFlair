@@ -249,7 +249,16 @@ model BoatService {
   businessId         String               @db.Uuid
   boatServiceBooking BoatServiceBooking[]
   name               String
-  location           String
+  overview           String
+  location           TripLocation
+  address            String
+  mapLink            String
+  perks              String[]
+  price              Int
+  imageUrls          String[]
+  checkInPolicy      String
+  bookingPolicy      String
+  contactNumber      String
   createdAt          DateTime             @default(now())
   updatedAt          DateTime             @updatedAt
 }

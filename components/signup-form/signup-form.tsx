@@ -86,10 +86,7 @@ export default function SignUpForm({ profileType, setPage }: SignUpFormProps) {
             toast({
               description: "You have successfully signed up!",
             });
-            const goToUrl =
-              profileType === ProfileType.Traveller
-                ? "/traveller-dashboard"
-                : "/business/dashboard";
+            const goToUrl = "/signin";
             router.push(goToUrl);
           } else {
             toast({
@@ -174,6 +171,11 @@ export default function SignUpForm({ profileType, setPage }: SignUpFormProps) {
                       placeholder="confirm your password"
                       {...field}
                       className="bg-[#D9D9D980]/35 rounded-[1.875rem] border border-black"
+                      onKeyDown={(e) => {
+                        if (e.key === "Enter") {
+                          form.handleSubmit(onSubmit)(e);
+                        }
+                      }}
                     />
                   </FormControl>
                   <FormMessage />
