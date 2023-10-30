@@ -1,6 +1,8 @@
 import Link from "next/link";
 import { RestaurantService, TripLocation } from "@prisma/client";
 
+import RestaurantCards from "@/components/plan-sections/restaurant-booking/restaurant-cards";
+
 async function fetchRestaurants(
   tripLocation: TripLocation
 ): Promise<RestaurantService[]> {
@@ -11,6 +13,7 @@ async function fetchRestaurants(
       headers: {
         "Content-Type": "application/json",
       },
+      cache: "no-store",
       body: JSON.stringify({ tripLocation: tripLocation }),
     }
   );
@@ -38,12 +41,11 @@ export default async function HotelPage({
       </p>
       <div className="flex gap-5 overflow-x-auto">
         {restaurants.map((restaurant, index) => (
-          <Link
+          <RestaurantCards
+            tripId={searchParams.tripId}
             key={index}
-            href={`/restaurant/${restaurant.id}?tripId=${searchParams.tripId}`}
-          >
-            {restaurant.name}
-          </Link>
+            restaurant={restaurant}
+          />
         ))}
       </div>
     </section>

@@ -149,21 +149,20 @@ model RestaurantMenuItem {
 }
 
 model RestaurantBooking {
-  id           String            @id @default(uuid()) @db.Uuid
-  restaurant   RestaurantService @relation(fields: [restaurantId], references: [id])
-  restaurantId String            @db.Uuid
-  tripPlan     TripPlan          @relation(fields: [tripPlanId], references: [id])
-  tripPlanId   String            @unique @db.Uuid
-  firstName    String
-  lastName     String
-  phoneNumber  String
-  date         String
-  time         String
-  totalPerson  Int
-  cost         Int
-  confirmed    Boolean           @default(false)
-  createdAt    DateTime          @default(now())
-  updatedAt    DateTime          @updatedAt
+  id              String            @id @default(uuid()) @db.Uuid
+  restaurant      RestaurantService @relation(fields: [restaurantId], references: [id])
+  restaurantId    String            @db.Uuid
+  tripPlan        TripPlan          @relation(fields: [tripPlanId], references: [id])
+  tripPlanId      String            @unique @db.Uuid
+  firstName       String
+  lastName        String
+  phoneNumber     String
+  dateTime        String
+  totalSeat       Int
+  estimatedBudget Int
+  confirmed       Boolean           @default(false)
+  createdAt       DateTime          @default(now())
+  updatedAt       DateTime          @updatedAt
 }
 
 model HotelService {

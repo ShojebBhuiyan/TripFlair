@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 import { TripLocation } from "@prisma/client";
 
 import { RestaurantInfo } from "@/types/restaurant";
@@ -76,8 +77,8 @@ export default async function RestaurantInfoPage({
               </TableRow>
             </TableHeader>
             <TableBody>
-              {restaurant.menuItems.map((menuItem) => (
-                <TableRow>
+              {restaurant.menuItems.map((menuItem, index) => (
+                <TableRow key={index}>
                   <TableCell className="text-md">{menuItem.name}</TableCell>
                   <TableCell className="text-md">{menuItem.price}</TableCell>
                 </TableRow>
@@ -89,7 +90,7 @@ export default async function RestaurantInfoPage({
       <div className="flex flex-col gap-5">
         <h2 className="text-3xl">Location</h2>
         <p className="text-xl">
-          {`${restaurant.location}, ${
+          {`${restaurant.address}, ${
             restaurant.location === TripLocation.Coxsbazar
               ? "Cox's Bazar"
               : restaurant?.location
@@ -101,7 +102,13 @@ export default async function RestaurantInfoPage({
         <p className="text-xl">{restaurant.contactNumber}</p>
       </div>
       <div className="self-center">
-        <Button>Book Restaurant</Button>
+        <Link
+          href={`/custom-plan/restaurant-booking?location=${restaurant.location.toLowerCase()}&tripId=${
+            searchParams.tripId
+          }&restaurantId=${params.restaurantId}`}
+        >
+          <Button>Book Restaurant</Button>
+        </Link>
       </div>
     </section>
   );

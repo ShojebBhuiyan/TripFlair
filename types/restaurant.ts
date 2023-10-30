@@ -11,5 +11,5 @@ export type RestaurantInfo = RestaurantService & {
 };
 
 export type RestaurantBookingInfo = RestaurantBooking & {
-  restaurantService: RestaurantService;
+  restaurant: RestaurantService;
 };

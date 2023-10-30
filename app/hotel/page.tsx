@@ -1,6 +1,6 @@
 import { HotelService, TripLocation } from "@prisma/client";
 
-import HotelCards from "@/components/plan-sections/hotel-cards";
+import HotelCards from "@/components/plan-sections/hotel-booking/hotel-cards";
 
 async function fetchHotels(
   tripLocation: TripLocation

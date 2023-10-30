@@ -101,13 +101,19 @@ export default function PlanAccordion({ tripPlan }: PlanAccordionProps) {
           {tripPlan.restaurantBooking ? (
             <div className="flex flex-col gap-4">
               <h1 className="text-2xl">
-                {`Restaurant name: ${tripPlan?.restaurantBooking.restaurantService.name}`}
+                {`Restaurant name: ${tripPlan?.restaurantBooking.restaurant.name}`}
               </h1>
               <h1 className="text-2xl">
-                {`Restaurant address: ${tripPlan?.restaurantBooking.restaurantService.address}`}
+                {`Restaurant address: ${tripPlan?.restaurantBooking.restaurant.address}`}
               </h1>
               <h1 className="text-2xl">
-                {`Hotel Contact Number: ${tripPlan?.restaurantBooking.restaurantService.contactNumber}`}
+                {`Hotel Contact Number: ${tripPlan?.restaurantBooking.restaurant.contactNumber}`}
+              </h1>
+              <h1 className="text-2xl">
+                {`Number of seats: ${tripPlan?.restaurantBooking.totalSeat}`}
+              </h1>
+              <h1 className="text-2xl">
+                {`Estimated budget: ${tripPlan?.restaurantBooking.estimatedBudget}`}
               </h1>
             </div>
           ) : (
