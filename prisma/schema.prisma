@@ -69,16 +69,18 @@ model TravellerProfile {
 }
 
 model TripPlan {
-  id                String             @id @default(uuid()) @db.Uuid
-  traveller         TravellerProfile   @relation(fields: [travellerId], references: [id])
-  travellerId       String             @db.Uuid
-  tripLocation      TripLocation
-  hotelBooking      HotelBooking?
-  travelInformation TravelInformation?
-  entertainment     Entertainment[]
-  restaurantBooking RestaurantBooking?
-  createdAt         DateTime           @default(now())
-  updatedAt         DateTime           @updatedAt
+  id                 String               @id @default(uuid()) @db.Uuid
+  traveller          TravellerProfile     @relation(fields: [travellerId], references: [id])
+  travellerId        String               @db.Uuid
+  tripLocation       TripLocation
+  hotelBooking       HotelBooking?
+  travelInformation  TravelInformation?
+  restaurantBooking  RestaurantBooking?
+  boatServiceBooking BoatServiceBooking[]
+  horseRidingBooking HorseRidingBooking[]
+  parasailingBooking ParasailingBooking[]
+  createdAt          DateTime             @default(now())
+  updatedAt          DateTime             @updatedAt
 }
 
 model TravelInformation {
@@ -93,17 +95,6 @@ model TravelInformation {
   totalCost          Int
   createdAt          DateTime        @default(now())
   updatedAt          DateTime        @updatedAt
-}
-
-model Entertainment {
-  id                 String               @id @default(uuid()) @db.Uuid
-  tripPlan           TripPlan             @relation(fields: [tripPlanId], references: [id])
-  tripPlanId         String               @db.Uuid
-  createdAt          DateTime             @default(now())
-  updatedAt          DateTime             @updatedAt
-  horseRidingBooking HorseRidingBooking[]
-  boatServiceBooking BoatServiceBooking[]
-  parasailingBooking ParasailingBooking[]
 }
 
 model BusinessProfile {
@@ -226,21 +217,21 @@ model HorseRiding {
 }
 
 model HorseRidingBooking {
-  id              String        @id @default(uuid()) @db.Uuid
-  horseRiding     HorseRiding   @relation(fields: [horseRidingId], references: [id])
-  horseRidingId   String        @db.Uuid
-  entertainment   Entertainment @relation(fields: [entertainmentId], references: [id])
-  entertainmentId String        @db.Uuid
-  firstName       String
-  lastName        String
-  phoneNumber     String
-  date            String
-  time            String
-  totalPerson     Int
-  cost            Int
-  confirmed       Boolean       @default(false)
-  createdAt       DateTime      @default(now())
-  updatedAt       DateTime      @updatedAt
+  id            String      @id @default(uuid()) @db.Uuid
+  horseRiding   HorseRiding @relation(fields: [horseRidingId], references: [id])
+  horseRidingId String      @db.Uuid
+  tripPlan      TripPlan    @relation(fields: [tripPlanId], references: [id])
+  tripPlanId    String      @unique @db.Uuid
+  firstName     String
+  lastName      String
+  phoneNumber   String
+  date          String
+  time          String
+  totalPerson   Int
+  cost          Int
+  confirmed     Boolean     @default(false)
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
 }
 
 model BoatService {
@@ -264,21 +255,21 @@ model BoatService {
 }
 
 model BoatServiceBooking {
-  id              String        @id @default(uuid()) @db.Uuid
-  boatService     BoatService   @relation(fields: [boatServiceId], references: [id])
-  boatServiceId   String        @db.Uuid
-  entertainment   Entertainment @relation(fields: [entertainmentId], references: [id])
-  entertainmentId String        @db.Uuid
-  firstName       String
-  lastName        String
-  phoneNumber     String
-  date            String
-  time            String
-  totalPerson     Int
-  cost            Int
-  confirmed       Boolean       @default(false)
-  createdAt       DateTime      @default(now())
-  updatedAt       DateTime      @updatedAt
+  id            String      @id @default(uuid()) @db.Uuid
+  boatService   BoatService @relation(fields: [boatServiceId], references: [id])
+  boatServiceId String      @db.Uuid
+  tripPlan      TripPlan    @relation(fields: [tripPlanId], references: [id])
+  tripPlanId    String      @db.Uuid
+  firstName     String
+  lastName      String
+  phoneNumber   String
+  dateTime      String
+  totalBoats    Int
+  totalCost     Int
+  tripDay       Int
+  confirmed     Boolean     @default(false)
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
 }
 
 model Parasailing {
@@ -293,19 +284,19 @@ model Parasailing {
 }
 
 model ParasailingBooking {
-  id              String        @id @default(uuid()) @db.Uuid
-  parasailing     Parasailing   @relation(fields: [parasailingId], references: [id])
-  parasailingId   String        @db.Uuid
-  entertainment   Entertainment @relation(fields: [entertainmentId], references: [id])
-  entertainmentId String        @db.Uuid
-  firstName       String
-  lastName        String
-  phoneNumber     String
-  date            String
-  time            String
-  totalPerson     Int
-  cost            Int
-  confirmed       Boolean       @default(false)
-  createdAt       DateTime      @default(now())
-  updatedAt       DateTime      @updatedAt
+  id            String      @id @default(uuid()) @db.Uuid
+  parasailing   Parasailing @relation(fields: [parasailingId], references: [id])
+  parasailingId String      @db.Uuid
+  tripPlan      TripPlan    @relation(fields: [tripPlanId], references: [id])
+  tripPlanId    String      @unique @db.Uuid
+  firstName     String
+  lastName      String
+  phoneNumber   String
+  date          String
+  time          String
+  totalPerson   Int
+  cost          Int
+  confirmed     Boolean     @default(false)
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
 }

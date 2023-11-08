@@ -5,15 +5,15 @@ import { TripLocation } from "@prisma/client";
 
 import { Button } from "@/components/ui/button";
 
-interface RestaurantBookingSuccessProps {
+interface BoatBookingSuccessProps {
   tripId: string;
   tripLocation: TripLocation;
 }
 
-export default function RestaurantBookingSuccess({
+export default function BoatBookingSuccess({
   tripId,
   tripLocation,
-}: RestaurantBookingSuccessProps) {
+}: BoatBookingSuccessProps) {
   const router = useRouter();
 
   return (
@@ -37,7 +37,7 @@ export default function RestaurantBookingSuccess({
           }
           className="mt-5 rounded-[0.625rem] bg-[#00A651] text-white"
         >
-          Choose local entertainments
+          Choose more local entertainments
         </Button>
       </div>
     </div>

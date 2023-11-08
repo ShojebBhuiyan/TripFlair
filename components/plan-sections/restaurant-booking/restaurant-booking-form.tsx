@@ -47,23 +47,26 @@ export default function BookingForm({
   const session = useSession();
 
   async function onSubmit(values: z.infer<typeof bookingFormSchema>) {
-    const researvation = await fetch("/api/traveller/trips/reserve-hotel", {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        userId: session.data?.user?.id,
-        restaurantId,
-        tripId,
-        firstName: values.firstName,
-        lastName: values.lastName,
-        phoneNumber: values.phoneNumber,
-        reservationDateTime: values.reservationDateTime,
-        totalSeats: values.totalSeats,
-        estimatedBudget: values.estimatedBudget,
-      }),
-    }).then(() => {
+    const researvation = await fetch(
+      "/api/traveller/trips/reserve-restaurant",
+      {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          userId: session.data?.user?.id,
+          restaurantId,
+          tripId,
+          firstName: values.firstName,
+          lastName: values.lastName,
+          phoneNumber: values.phoneNumber,
+          reservationDateTime: values.reservationDateTime,
+          totalSeats: values.totalSeats,
+          estimatedBudget: values.estimatedBudget,
+        }),
+      }
+    ).then(() => {
       setPage(1);
     });
   }

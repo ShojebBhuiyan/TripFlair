@@ -24,10 +24,15 @@ export async function POST(req: Request) {
             restaurant: true,
           },
         },
+        boatServiceBooking: {
+          include: {
+            boatService: true,
+          },
+        },
       },
     });
 
-    console.log(trip);
+    // console.log(trip);
 
     if (trip) {
       return new Response(JSON.stringify(trip), {

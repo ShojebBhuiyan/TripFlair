@@ -24,6 +24,7 @@ async function getTripsData(id: string): Promise<TripResultsType[]> {
 
   const data: TripResultsType[] = await res.json();
 
+  console.log(data);
   return data;
 }
 

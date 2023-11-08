@@ -14,6 +14,7 @@ async function fetchTripPlan(tripId: string): Promise<TripPlanType> {
     }
   );
   const data: TripPlanType = await res.json();
+  // console.log("Inside", data.boatBooking?.boatService);
   return data;
 }
 
@@ -26,12 +27,19 @@ export default async function TripInfo({
   const tripPlan = await fetchTripPlan(params.tripId);
   isLoading = false;
 
-  console.log("Outside", tripPlan);
+  const startDate = new Date(tripPlan.travelInformation.startDate);
+  const endDate = new Date(tripPlan.travelInformation.returnDate);
+
+  const totalTripDays = Math.floor(
+    (endDate.getTime() - startDate.getTime()) / (1000 * 3600 * 24)
+  );
+
+  // console.log("Outside", tripPlan.boatServiceBooking);
   return (
     <>
       {!isLoading && tripPlan ? (
         <section className="container flex flex-col gap-5 py-10">
-          <PlanAccordion tripPlan={tripPlan} />
+          <PlanAccordion tripPlan={tripPlan} totalTripDays={totalTripDays} />
         </section>
       ) : (
         <>Loading...</>

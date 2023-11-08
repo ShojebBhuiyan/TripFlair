@@ -11,13 +11,18 @@ import {
 } from "@/components/ui/accordion";
 
 import { Button } from "../ui/button";
+import { Separator } from "../ui/separator";
+import { Tabs, TabsContent, TabsList, TabsTrigger } from "../ui/tabs";
 
 interface PlanAccordionProps {
   tripPlan: TripPlanType;
+  totalTripDays: number;
 }
 
-export default function PlanAccordion({ tripPlan }: PlanAccordionProps) {
-  console.log("Inside", tripPlan);
+export default function PlanAccordion({
+  tripPlan,
+  totalTripDays,
+}: PlanAccordionProps) {
   return (
     <Accordion type="multiple">
       <AccordionItem value="travel-information">
@@ -127,6 +132,74 @@ export default function PlanAccordion({ tripPlan }: PlanAccordionProps) {
               >
                 <Button variant={"link"} className="text-2xl">
                   Book a Restaurant
+                </Button>
+              </Link>
+            </div>
+          )}
+        </AccordionContent>
+      </AccordionItem>
+      <AccordionItem value="itinerary">
+        <AccordionTrigger className="text-4xl">Itinerary</AccordionTrigger>
+        <AccordionContent>
+          {tripPlan.boatServiceBooking?.length! > 0 ? (
+            <Tabs defaultValue="day-1" className="w-full">
+              <TabsList className="flex w-full justify-center gap-5">
+                {Array(totalTripDays)
+                  .fill(0)
+                  .map((_, index) => (
+                    <TabsTrigger
+                      key={index}
+                      value={`day-${index + 1}`}
+                      className="text-2xl"
+                    >
+                      Day {index + 1}
+                    </TabsTrigger>
+                  ))}
+              </TabsList>
+              {Array(totalTripDays)
+                .fill(0)
+                .map((_, index) => (
+                  <TabsContent value={`day-${index + 1}`}>
+                    {tripPlan.boatServiceBooking?.map((boatService) => (
+                      <div className="flex flex-col gap-4">
+                        {boatService.tripDay === index + 1 ? (
+                          <div className="flex flex-col gap-4">
+                            <h1 className="text-3xl">Boat Trip</h1>
+                            <Separator />
+
+                            <h1 className="text-2xl">
+                              {`Boat Name: ${boatService.boatService.name}`}
+                            </h1>
+                            <h1 className="text-2xl">
+                              {`Boat Location: ${boatService.boatService.address}, ${boatService.boatService.location}`}
+                            </h1>
+                            <h1 className="text-2xl">
+                              {`Boat Cost: ${boatService.totalCost}`}
+                            </h1>
+                            <h1 className="text-2xl">
+                              {`Boat Contact Number: ${boatService.boatService.contactNumber}`}
+                            </h1>
+                            <Separator />
+                          </div>
+                        ) : (
+                          <></>
+                        )}
+                      </div>
+                    ))}
+                  </TabsContent>
+                ))}
+            </Tabs>
+          ) : (
+            <div className="flex flex-col gap-4">
+              <h1 className="text-2xl">No Itinerary Planned</h1>
+              <Link
+                className="self-center"
+                href={`/entertainment?tripId=${
+                  tripPlan.id
+                }&location=${tripPlan.tripLocation.toLowerCase()}`}
+              >
+                <Button variant={"link"} className="text-2xl">
+                  Choose local entertainments
                 </Button>
               </Link>
             </div>
