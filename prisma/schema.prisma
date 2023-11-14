@@ -273,14 +273,31 @@ model BoatServiceBooking {
 }
 
 model Parasailing {
-  id                 String               @id @default(uuid()) @db.Uuid
-  business           BusinessProfile      @relation(fields: [businessId], references: [id])
-  businessId         String               @db.Uuid
-  parasailingBooking ParasailingBooking[]
-  name               String
-  location           String
-  createdAt          DateTime             @default(now())
-  updatedAt          DateTime             @updatedAt
+  id                  String                @id @default(uuid()) @db.Uuid
+  business            BusinessProfile       @relation(fields: [businessId], references: [id])
+  businessId          String                @db.Uuid
+  parasailingPackages ParasailingPackages[]
+  parasailingBooking  ParasailingBooking[]
+  name                String
+  subtitle            String
+  overview            String
+  location            TripLocation
+  address             String
+  mapLink             String
+  imageUrls           String[]
+  contactNumber       String
+  createdAt           DateTime              @default(now())
+  updatedAt           DateTime              @updatedAt
+}
+
+model ParasailingPackages {
+  id            String      @id @default(uuid()) @db.Uuid
+  parasailing   Parasailing @relation(fields: [parasailingId], references: [id], onDelete: Cascade)
+  parasailingId String      @db.Uuid
+  description   String
+  price         Int
+  createdAt     DateTime    @default(now())
+  updatedAt     DateTime    @updatedAt
 }
 
 model ParasailingBooking {
