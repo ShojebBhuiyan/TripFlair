@@ -34,6 +34,7 @@ export async function POST(request: NextRequest) {
         address: body.address,
         contactNumber: body.contactNumber,
         location: body.location,
+        mapLink: body.mapLink,
         name: body.name,
         subtitle: body.subtitle,
         overview: body.overview,

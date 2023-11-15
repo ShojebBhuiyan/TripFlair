@@ -3,7 +3,7 @@ import os from "os";
 import { join } from "path";
 import { NextRequest } from "next/server";
 
-type UploadMode = "restuarant" | "hotel";
+type UploadMode = "restuarant" | "hotel" | "parasailing";
 
 async function moveFiles(files: File[], mode: UploadMode, id: string) {
   let paths: string[] = [];

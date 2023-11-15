@@ -5,13 +5,14 @@ import Image from "next/image";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { TripLocation } from "@prisma/client";
 import { useSession } from "next-auth/react";
-import { Form, useForm } from "react-hook-form";
+import { useForm } from "react-hook-form";
 import { v4 } from "uuid";
 import { z } from "zod";
 
 import { ParasailingPackageType } from "@/types/parasailing";
 import { Button } from "@/components/ui/button";
 import {
+  Form,
   FormControl,
   FormField,
   FormItem,
@@ -91,7 +92,7 @@ export default function ParasailingInfoForm({
       }
     }
     formData.append("length", selectedImages?.length.toString()!);
-    formData.append("mode", "hotel");
+    formData.append("mode", "parasailing");
     formData.append("id", id);
 
     const response = await fetch("/api/upload-image", {
@@ -226,7 +227,7 @@ export default function ParasailingInfoForm({
           }}
         />
       </div>
-      <div className="flex w-[40rem] flex-col gap-4">
+      <div className="flex w-[41rem] flex-col gap-4">
         <h2 className="text-xl">Add your packages:</h2>
         {packages.length > 0 && (
           <Table>
@@ -326,8 +327,8 @@ export default function ParasailingInfoForm({
           onClick={() => {
             const id = v4();
             onNextClick(id);
-            setPage(1);
-            setProgress(100);
+            // setPage(1);
+            // setProgress(100);
           }}
         >
           Next
