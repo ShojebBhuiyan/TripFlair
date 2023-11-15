@@ -11,6 +11,7 @@ async function fetchHotels(
     headers: {
       "Content-Type": "application/json",
     },
+    cache: "no-store",
     body: JSON.stringify({ tripLocation: tripLocation }),
   });
   const data: HotelService[] = await res.json();

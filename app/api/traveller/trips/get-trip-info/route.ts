@@ -29,6 +29,11 @@ export async function POST(req: Request) {
             boatService: true,
           },
         },
+        parasailingBooking: {
+          include: {
+            parasailing: true,
+          },
+        },
       },
     });
 

@@ -15,7 +15,7 @@ export async function POST(request: NextRequest) {
       where: {
         location: body.tripLocation,
       },
-      take: 5,
+      // take: 5,
     });
     console.log(hotels);
     return new Response(JSON.stringify(hotels), { status: 200 });

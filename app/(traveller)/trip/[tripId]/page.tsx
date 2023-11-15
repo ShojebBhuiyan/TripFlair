@@ -14,7 +14,7 @@ async function fetchTripPlan(tripId: string): Promise<TripPlanType> {
     }
   );
   const data: TripPlanType = await res.json();
-  // console.log("Inside", data.boatBooking?.boatService);
+  console.log("Inside", data);
   return data;
 }
 

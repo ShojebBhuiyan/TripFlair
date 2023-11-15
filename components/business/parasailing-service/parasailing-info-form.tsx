@@ -327,8 +327,8 @@ export default function ParasailingInfoForm({
           onClick={() => {
             const id = v4();
             onNextClick(id);
-            // setPage(1);
-            // setProgress(100);
+            setPage(1);
+            setProgress(100);
           }}
         >
           Next

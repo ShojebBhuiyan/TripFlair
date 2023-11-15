@@ -3,6 +3,7 @@ import {
   BoatServiceBooking,
   HotelBooking,
   HotelService,
+  ParasailingBooking,
   TravelInformation,
   TripPlan,
 } from "@prisma/client";
@@ -30,6 +31,11 @@ export type TripPlanType = TripPlan & {
   boatServiceBooking:
     | (BoatServiceBooking & {
         boatService: BoatService;
+      })[]
+    | null;
+  parasailingBooking:
+    | (ParasailingBooking & {
+        parasailing: BoatService;
       })[]
     | null;
 };

@@ -141,7 +141,8 @@ export default function PlanAccordion({
       <AccordionItem value="itinerary">
         <AccordionTrigger className="text-4xl">Itinerary</AccordionTrigger>
         <AccordionContent>
-          {tripPlan.boatServiceBooking?.length! > 0 ? (
+          {tripPlan.boatServiceBooking?.length! ||
+          tripPlan.parasailingBooking?.length! > 0 ? (
             <Tabs defaultValue="day-1" className="w-full">
               <TabsList className="flex w-full justify-center gap-5">
                 {Array(totalTripDays)
@@ -160,13 +161,45 @@ export default function PlanAccordion({
                 .fill(0)
                 .map((_, index) => (
                   <TabsContent value={`day-${index + 1}`}>
+                    {tripPlan.parasailingBooking?.map(
+                      (parasailingBookingInfo) => (
+                        <div className="flex flex-col gap-4">
+                          {parasailingBookingInfo.tripDay === index + 1 ? (
+                            <div className="flex flex-col gap-4">
+                              <div className="flex justify-between">
+                                <h1 className="text-3xl">Parasailing</h1>
+                                <h1 className="text-3xl">{`${parasailingBookingInfo.reservationDateTime}`}</h1>
+                              </div>
+                              <Separator />
+                              <h1 className="text-2xl">
+                                {`Name: ${parasailingBookingInfo.parasailing.name}`}
+                              </h1>
+                              <h1 className="text-2xl">
+                                {`Location: ${parasailingBookingInfo.parasailing.address}, ${parasailingBookingInfo.parasailing.location}`}
+                              </h1>
+                              <h1 className="text-2xl">
+                                {`Cost: ${parasailingBookingInfo.cost}`}
+                              </h1>
+                              <h1 className="text-2xl">
+                                {`Contact Number: ${parasailingBookingInfo.parasailing.contactNumber}`}
+                              </h1>
+                              <Separator />
+                            </div>
+                          ) : (
+                            <></>
+                          )}
+                        </div>
+                      )
+                    )}
                     {tripPlan.boatServiceBooking?.map((boatService) => (
                       <div className="flex flex-col gap-4">
                         {boatService.tripDay === index + 1 ? (
                           <div className="flex flex-col gap-4">
-                            <h1 className="text-3xl">Boat Trip</h1>
+                            <div className="flex justify-between">
+                              <h1 className="text-3xl">Boat Trip</h1>
+                              <h1 className="text-3xl">{`${boatService.dateTime}`}</h1>
+                            </div>
                             <Separator />
-
                             <h1 className="text-2xl">
                               {`Boat Name: ${boatService.boatService.name}`}
                             </h1>
@@ -186,6 +219,18 @@ export default function PlanAccordion({
                         )}
                       </div>
                     ))}
+                    <div className="mt-5 flex items-center justify-center">
+                      <Link
+                        className="self-center"
+                        href={`/entertainment?tripId=${
+                          tripPlan.id
+                        }&location=${tripPlan.tripLocation.toLowerCase()}`}
+                      >
+                        <Button variant={"link"} className="text-2xl">
+                          Choose local entertainments
+                        </Button>
+                      </Link>
+                    </div>
                   </TabsContent>
                 ))}
             </Tabs>

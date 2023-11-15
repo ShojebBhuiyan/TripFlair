@@ -221,7 +221,7 @@ model HorseRidingBooking {
   horseRiding   HorseRiding @relation(fields: [horseRidingId], references: [id])
   horseRidingId String      @db.Uuid
   tripPlan      TripPlan    @relation(fields: [tripPlanId], references: [id])
-  tripPlanId    String      @unique @db.Uuid
+  tripPlanId    String      @db.Uuid
   firstName     String
   lastName      String
   phoneNumber   String
@@ -301,19 +301,20 @@ model ParasailingPackages {
 }
 
 model ParasailingBooking {
-  id            String      @id @default(uuid()) @db.Uuid
-  parasailing   Parasailing @relation(fields: [parasailingId], references: [id])
-  parasailingId String      @db.Uuid
-  tripPlan      TripPlan    @relation(fields: [tripPlanId], references: [id])
-  tripPlanId    String      @unique @db.Uuid
-  firstName     String
-  lastName      String
-  phoneNumber   String
-  date          String
-  time          String
-  totalPerson   Int
-  cost          Int
-  confirmed     Boolean     @default(false)
-  createdAt     DateTime    @default(now())
-  updatedAt     DateTime    @updatedAt
+  id                  String      @id @default(uuid()) @db.Uuid
+  parasailing         Parasailing @relation(fields: [parasailingId], references: [id])
+  parasailingId       String      @db.Uuid
+  tripPlan            TripPlan    @relation(fields: [tripPlanId], references: [id])
+  tripPlanId          String      @db.Uuid
+  packageDescription  String
+  firstName           String
+  lastName            String
+  phoneNumber         String
+  reservationDateTime String
+  tripDay             Int
+  totalPerson         Int
+  cost                Int
+  confirmed           Boolean     @default(false)
+  createdAt           DateTime    @default(now())
+  updatedAt           DateTime    @updatedAt
 }

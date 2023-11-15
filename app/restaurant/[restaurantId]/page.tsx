@@ -72,7 +72,7 @@ export default async function RestaurantInfoPage({
             <TableCaption>{`Restaurant Menu`}</TableCaption>
             <TableHeader>
               <TableRow>
-                <TableHead className="text-lg font-medium">Room Type</TableHead>
+                <TableHead className="text-lg font-medium">Item Name</TableHead>
                 <TableHead className="text-lg font-medium">Price</TableHead>
               </TableRow>
             </TableHeader>
