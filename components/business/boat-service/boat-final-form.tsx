@@ -80,21 +80,22 @@ export default function BoatFinalForm({
     <section className="flex flex-col gap-10 py-10">
       <div className="grid w-[40rem] grid-cols-1 items-center gap-5">
         <h2 className="text-xl">Enter your price:</h2>
-        <Input
-          className="w-[10rem]"
-          type="number"
-          onChange={(e) => {
-            setPrice(parseInt(e.target.value));
-            e.target.value === ""
-              ? setIsPriceEmpty(true)
-              : setIsPriceEmpty(false);
-          }}
-        />
+        <div className="flex items-center gap-5">
+          <Input
+            type="number"
+            onChange={(e) => {
+              setPrice(parseInt(e.target.value));
+              e.target.value === ""
+                ? setIsPriceEmpty(true)
+                : setIsPriceEmpty(false);
+            }}
+          />
+          <h2 className="text-xl">BDT</h2>
+        </div>
       </div>
       <div className="grid w-[40rem] grid-cols-1 items-center gap-5">
         <h2 className="text-xl">Enter your check-in policy:</h2>
         <Textarea
-          className="w-[10rem]"
           onChange={(e) => {
             setCheckInPolicy(e.target.value);
             e.target.value === ""
@@ -106,7 +107,6 @@ export default function BoatFinalForm({
       <div className="grid w-[40rem] grid-cols-1 items-center gap-5">
         <h2 className="text-xl">Enter your booking policy:</h2>
         <Textarea
-          className="w-[10rem]"
           onChange={(e) => {
             setBookingPolicy(e.target.value);
             e.target.value === ""
@@ -118,7 +118,6 @@ export default function BoatFinalForm({
       <div className="grid w-[40rem] grid-cols-1 items-center gap-5">
         <h2 className="text-xl">Enter your contact number:</h2>
         <Input
-          className="w-[10rem]"
           type="tel"
           onChange={(e) => {
             setContactNumber(e.target.value);

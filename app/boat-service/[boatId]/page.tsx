@@ -33,9 +33,7 @@ export default async function BoatInfoPage({
           {boat.name}
         </h1>
         <h2 className="text-3xl">Overview</h2>
-        <h3 className="text-center text-xl font-semibold text-black">
-          {boat.overview}
-        </h3>
+        <h3 className="text-xl font-semibold text-black">{boat.overview}</h3>
         <div className="flex flex-col gap-5">
           <h2 className="text-3xl">Location</h2>
           <p className="text-xl">

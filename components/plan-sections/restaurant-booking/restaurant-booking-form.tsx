@@ -88,7 +88,12 @@ export default function BookingForm({
                 <FormItem>
                   <FormLabel>First Name</FormLabel>
                   <FormControl>
-                    <Input type="text" placeholder="first name" {...field} />
+                    <Input
+                      className="w-60"
+                      type="text"
+                      placeholder="first name"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -101,7 +106,12 @@ export default function BookingForm({
                 <FormItem>
                   <FormLabel>Last Name</FormLabel>
                   <FormControl>
-                    <Input type="text" placeholder="last name" {...field} />
+                    <Input
+                      className="w-60"
+                      type="text"
+                      placeholder="last name"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -114,7 +124,12 @@ export default function BookingForm({
                 <FormItem>
                   <FormLabel>Phone Number</FormLabel>
                   <FormControl>
-                    <Input type="tel" placeholder="0123456789" {...field} />
+                    <Input
+                      className="w-60"
+                      type="tel"
+                      placeholder="0123456789"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -162,7 +177,7 @@ export default function BookingForm({
                 name="estimatedBudget"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Estimated Budget</FormLabel>
+                    <FormLabel>Estimated Budget (BDT)</FormLabel>
                     <FormControl>
                       <Input
                         type="number"

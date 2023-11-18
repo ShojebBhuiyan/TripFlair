@@ -37,6 +37,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { Textarea } from "@/components/ui/textarea";
 
 interface ParasailingSuccessFormProps {
   setPage: (page: number) => void;
@@ -124,27 +125,15 @@ export default function ParasailingInfoForm({
     <section className="flex flex-col gap-10 py-10">
       <div className="grid w-[40rem] grid-cols-1 items-center gap-5">
         <h2 className="text-xl">What is the name of your parasailing point?</h2>
-        <Input
-          className="w-full"
-          type="text"
-          onChange={(e) => setName(e.target.value)}
-        />
+        <Textarea onChange={(e) => setName(e.target.value)} />
       </div>
       <div className="grid w-[40rem] grid-cols-1 items-center gap-5">
         <h2 className="text-xl">Insert your subtitle.</h2>
-        <Input
-          className="w-full"
-          type="text"
-          onChange={(e) => setSubtitle(e.target.value)}
-        />
+        <Textarea onChange={(e) => setSubtitle(e.target.value)} />
       </div>
       <div className="grid w-[40rem] grid-cols-1 items-center gap-5">
         <h2 className="text-xl">Insert your overview.</h2>
-        <Input
-          className="w-full"
-          type="text"
-          onChange={(e) => setOverview(e.target.value)}
-        />
+        <Textarea onChange={(e) => setOverview(e.target.value)} />
       </div>
       <div className="flex w-[40rem] items-center justify-between gap-5">
         <h2 className="text-xl">Where is your parasailing point located?</h2>
@@ -177,19 +166,11 @@ export default function ParasailingInfoForm({
       </div>
       <div className="grid w-[40rem] grid-cols-1 items-center gap-5">
         <h2 className="text-xl">Insert your address.</h2>
-        <Input
-          className="w-full"
-          type="text"
-          onChange={(e) => setAddress(e.target.value)}
-        />
+        <Textarea onChange={(e) => setAddress(e.target.value)} />
       </div>
       <div className="grid w-[40rem] grid-cols-1 items-center gap-5">
         <h2 className="text-xl">Insert your Google Map link.</h2>
-        <Input
-          className="w-full"
-          type="text"
-          onChange={(e) => setMapLink(e.target.value)}
-        />
+        <Textarea onChange={(e) => setMapLink(e.target.value)} />
       </div>
       <div className="grid w-[40rem] grid-cols-1 items-center gap-5">
         <h2 className="text-xl">Add pictures of your parasailing point:</h2>
@@ -235,13 +216,15 @@ export default function ParasailingInfoForm({
             <TableHeader>
               <TableRow>
                 <TableHead className="text-lg font-medium">Item</TableHead>
-                <TableHead className="text-lg font-medium">Price</TableHead>
+                <TableHead className="text-lg font-medium">
+                  Price (BDT)
+                </TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {packages.map((_package) => (
                 <TableRow>
-                  <TableCell className="text-md">
+                  <TableCell className="text-md max-w-xs overflow-auto break-words">
                     {_package.description}
                   </TableCell>
                   <TableCell className="text-md">{_package.price}</TableCell>
@@ -253,44 +236,46 @@ export default function ParasailingInfoForm({
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onPackageAddSubmit)}>
             <div className="flex items-center gap-5">
-              <FormField
-                control={form.control}
-                name="description"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Description</FormLabel>
-                    <FormControl>
-                      <Input
-                        type="text"
-                        className="w-[20rem]"
-                        placeholder="Description"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="price"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Price</FormLabel>
-                    <FormControl>
-                      <Input
-                        type="number"
-                        className="w-[10rem]"
-                        {...field}
-                        onChange={(e) => {
-                          form.setValue("price", parseInt(e.target.value));
-                        }}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+              <div className="flex items-start gap-5">
+                <FormField
+                  control={form.control}
+                  name="description"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Description</FormLabel>
+                      <FormControl>
+                        <Textarea
+                          className="w-[20rem]"
+                          placeholder="Description"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="price"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Price (BDT)</FormLabel>
+                      <FormControl>
+                        <Input
+                          type="number"
+                          className="w-[10rem]"
+                          {...field}
+                          onChange={(e) => {
+                            form.setValue("price", parseInt(e.target.value));
+                          }}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
+
               <Button
                 type="submit"
                 className="mt-5 rounded-[0.625rem] bg-[#00A651] text-black"
@@ -303,11 +288,7 @@ export default function ParasailingInfoForm({
       </div>
       <div className="grid w-[40rem] grid-cols-1 items-center gap-5">
         <h2 className="text-xl">Insert your contact number.</h2>
-        <Input
-          className="w-full"
-          type="tel"
-          onChange={(e) => setContactNumber(e.target.value)}
-        />
+        <Input type="tel" onChange={(e) => setContactNumber(e.target.value)} />
       </div>
       <div className="flex justify-end">
         <Button

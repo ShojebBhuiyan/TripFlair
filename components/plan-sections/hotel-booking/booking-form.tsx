@@ -89,7 +89,12 @@ export default function BookingForm({
                 <FormItem>
                   <FormLabel>First Name</FormLabel>
                   <FormControl>
-                    <Input type="text" placeholder="first name" {...field} />
+                    <Input
+                      className="w-60"
+                      type="text"
+                      placeholder="first name"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -102,7 +107,12 @@ export default function BookingForm({
                 <FormItem>
                   <FormLabel>Last Name</FormLabel>
                   <FormControl>
-                    <Input type="text" placeholder="last name" {...field} />
+                    <Input
+                      className="w-60"
+                      type="text"
+                      placeholder="last name"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -115,7 +125,12 @@ export default function BookingForm({
                 <FormItem>
                   <FormLabel>Phone Number</FormLabel>
                   <FormControl>
-                    <Input type="tel" placeholder="0123456789" {...field} />
+                    <Input
+                      className="w-60"
+                      type="tel"
+                      placeholder="0123456789"
+                      {...field}
+                    />
                   </FormControl>
                   <FormMessage />
                 </FormItem>
@@ -159,6 +174,7 @@ export default function BookingForm({
                   <FormLabel>Total Room</FormLabel>
                   <FormControl>
                     <Input
+                      className="w-60"
                       type="number"
                       {...field}
                       onChange={(e) => {
@@ -172,11 +188,11 @@ export default function BookingForm({
               )}
             />
             <h3 className="text-2xl">
-              {`Your total booking cost: ${hotelRoom.price * totalRoom}`}
+              {`Your total booking cost: ${hotelRoom.price * totalRoom} BDT`}
             </h3>
             <Button
               type="submit"
-              className="mt-5 justify-center rounded-[0.625rem] bg-[#00A651] text-black"
+              className="mt-5 justify-center rounded-[0.625rem] bg-[#00A651] text-black hover:bg-[#47dc92]"
             >
               Confirm
             </Button>

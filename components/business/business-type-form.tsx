@@ -17,7 +17,7 @@ export default function BusinessTypeForm() {
   const router = useRouter();
   return (
     <div className="py-10">
-      <h1 className="text-4xl">What kind of business do you have? </h1>
+      <h1 className="text-4xl">What kind of service do you have? </h1>
       <RadioGroup
         onValueChange={(value) => {
           setBusinessType(value);

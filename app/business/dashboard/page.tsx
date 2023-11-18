@@ -68,7 +68,6 @@ export default async function BusinessDashboardPage() {
             <div>
               <h2 className="text-4xl">Hotel Services</h2>
               <Separator className="my-5" />
-
               <div className="flex flex-col gap-5">
                 {businesses.hotelService.map((hotelService, index) => (
                   <div

@@ -4,7 +4,6 @@ import { useState } from "react";
 import { TripLocation } from "@prisma/client";
 
 import { Button } from "@/components/ui/button";
-import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import {
   Select,
@@ -50,9 +49,7 @@ export default function BoatInfoForm({
     <section className="flex flex-col gap-10 py-10">
       <div className="grid w-[40rem] grid-cols-1 items-center gap-5">
         <h2 className="text-xl">What is the name of your boat?</h2>
-        <Input
-          className="w-[10rem]"
-          type="text"
+        <Textarea
           onChange={(e) => {
             boatContext?.setTitle(e.target.value);
             e.target.value === ""
@@ -64,7 +61,6 @@ export default function BoatInfoForm({
       <div className="grid w-[40rem] grid-cols-1 items-center gap-5">
         <h2 className="text-xl">{"Add an overview of your boat:"}</h2>
         <Textarea
-          className="w-[10rem]"
           onChange={(e) => {
             boatContext?.setOverview(e.target.value);
             e.target.value === ""
@@ -106,9 +102,7 @@ export default function BoatInfoForm({
       </div>
       <div className="grid w-[40rem] grid-cols-1 items-center gap-5">
         <h2 className="text-xl">Enter your address:</h2>
-        <Input
-          className="w-[10rem]"
-          type="text"
+        <Textarea
           onChange={(e) => {
             boatContext?.setAddress(e.target.value);
             e.target.value === ""
@@ -119,9 +113,7 @@ export default function BoatInfoForm({
       </div>
       <div className="grid w-[40rem] grid-cols-1 items-center gap-5">
         <h2 className="text-xl">Enter the Google Map link of your location:</h2>
-        <Input
-          className="w-[10rem]"
-          type="text"
+        <Textarea
           onChange={(e) => {
             boatContext?.setMapLink(e.target.value);
             e.target.value === ""
@@ -154,9 +146,8 @@ export default function BoatInfoForm({
         <div className="flex items-center gap-5">
           <div className="flex flex-col gap-3">
             <Label>Perk Name</Label>
-            <Input
+            <Textarea
               value={temporaryPerk}
-              type="text"
               className="w-[20rem]"
               placeholder="Perk name"
               onChange={(e) => {

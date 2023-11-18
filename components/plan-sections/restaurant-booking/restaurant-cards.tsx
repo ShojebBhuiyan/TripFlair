@@ -32,14 +32,13 @@ export default function RestaurantCards({
         />
       </div>
       <div className="flex h-full w-full flex-col gap-5 p-4">
-        <h3 className="text-center text-xl font-bold">{restaurant.address}</h3>
         <div className="flex h-full flex-col justify-end">
           <Button
             onClick={() => {
               router.push(`/restaurant/${restaurant.id}?tripId=${tripId}`);
             }}
           >
-            Book Hotel
+            See Details
           </Button>
         </div>
       </div>

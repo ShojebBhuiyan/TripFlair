@@ -28,6 +28,7 @@ import {
   TableHeader,
   TableRow,
 } from "@/components/ui/table";
+import { Textarea } from "@/components/ui/textarea";
 
 import { useRestaurant } from "./restaurant-provider";
 
@@ -150,7 +151,9 @@ export default function RestaurantMenuForm({
             <TableHeader>
               <TableRow>
                 <TableHead className="text-lg font-medium">Item</TableHead>
-                <TableHead className="text-lg font-medium">Price</TableHead>
+                <TableHead className="text-lg font-medium">
+                  Price (BDT)
+                </TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
@@ -165,45 +168,46 @@ export default function RestaurantMenuForm({
         )}
         <Form {...form}>
           <form onSubmit={form.handleSubmit(onMenuAddSubmit)}>
-            <div className="flex items-center gap-5">
-              <FormField
-                control={form.control}
-                name="name"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Item Name</FormLabel>
-                    <FormControl>
-                      <Input
-                        type="text"
-                        className="w-[20rem]"
-                        placeholder="Item Name"
-                        {...field}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
-              <FormField
-                control={form.control}
-                name="price"
-                render={({ field }) => (
-                  <FormItem>
-                    <FormLabel>Item Price</FormLabel>
-                    <FormControl>
-                      <Input
-                        type="number"
-                        className="w-[10rem]"
-                        {...field}
-                        onChange={(e) => {
-                          form.setValue("price", parseInt(e.target.value));
-                        }}
-                      />
-                    </FormControl>
-                    <FormMessage />
-                  </FormItem>
-                )}
-              />
+            <div className="flex w-full items-center justify-between gap-5">
+              <div className="flex items-start gap-5">
+                <FormField
+                  control={form.control}
+                  name="name"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Item Name</FormLabel>
+                      <FormControl>
+                        <Textarea
+                          className="w-[20rem]"
+                          placeholder="Item Name"
+                          {...field}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+                <FormField
+                  control={form.control}
+                  name="price"
+                  render={({ field }) => (
+                    <FormItem>
+                      <FormLabel>Item Price (BDT)</FormLabel>
+                      <FormControl>
+                        <Input
+                          type="number"
+                          className="w-[10rem]"
+                          {...field}
+                          onChange={(e) => {
+                            form.setValue("price", parseInt(e.target.value));
+                          }}
+                        />
+                      </FormControl>
+                      <FormMessage />
+                    </FormItem>
+                  )}
+                />
+              </div>
               <Button
                 type="submit"
                 className="mt-5 rounded-[0.625rem] bg-[#00A651] text-black"
@@ -215,10 +219,9 @@ export default function RestaurantMenuForm({
         </Form>
       </div>
 
-      <div className="grid  w-[40rem] grid-cols-1 items-center gap-5">
+      <div className="grid w-[40rem] grid-cols-1 items-center gap-5">
         <h2 className="text-xl">Enter your contact number:</h2>
         <Input
-          className="w-[20rem]"
           type="tel"
           onChange={(e) => {
             const contactNumber = e.target.value;

@@ -37,7 +37,7 @@ export default function HotelCards({ tripId, hotel }: HotelCardsProps) {
               router.push(`/hotel/${hotel.id}?tripId=${tripId}`);
             }}
           >
-            Book Hotel
+            See Details
           </Button>
         </div>
       </div>

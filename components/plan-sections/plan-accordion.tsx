@@ -47,7 +47,7 @@ export default function PlanAccordion({
               {`Number of Travellers: ${tripPlan?.travelInformation?.numberOfTravellers}`}
             </h1>
             <h1 className="text-2xl">
-              {`Travel Cost: ${tripPlan?.travelInformation?.totalCost}`}
+              {`Travel Cost: ${tripPlan?.travelInformation?.totalCost} BDT`}
             </h1>
           </div>
         </AccordionContent>
@@ -78,7 +78,7 @@ export default function PlanAccordion({
                 {`Number of Rooms: ${tripPlan?.hotelBooking?.totalRoom}`}
               </h1>
               <h1 className="text-2xl">
-                {`Total hotel charges: ${tripPlan?.hotelBooking?.cost}`}
+                {`Total hotel charges: ${tripPlan?.hotelBooking?.cost} BDT`}
               </h1>
             </div>
           ) : (
@@ -118,7 +118,7 @@ export default function PlanAccordion({
                 {`Number of seats: ${tripPlan?.restaurantBooking.totalSeat}`}
               </h1>
               <h1 className="text-2xl">
-                {`Estimated budget: ${tripPlan?.restaurantBooking.estimatedBudget}`}
+                {`Estimated budget: ${tripPlan?.restaurantBooking.estimatedBudget} BDT`}
               </h1>
             </div>
           ) : (

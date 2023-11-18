@@ -34,14 +34,13 @@ export default function ParasailingCards({
         />
       </div>
       <div className="flex h-full w-full flex-col gap-5 p-4">
-        <h3 className="text-center text-xl font-bold">{parasailing.address}</h3>
         <div className="flex h-full flex-col justify-end">
           <Button
             onClick={() => {
               router.push(`/parasailing/${parasailing.id}?tripId=${tripId}`);
             }}
           >
-            Book Parasailing Service
+            See Details
           </Button>
         </div>
       </div>
