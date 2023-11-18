@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import { HotelRoom, HotelService, TripLocation } from "@prisma/client";
+import { TripLocation } from "@prisma/client";
 
 import { HotelInformation } from "@/types/hotel";
 import {
