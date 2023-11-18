@@ -185,7 +185,7 @@ export default function SignUpForm({ profileType, setPage }: SignUpFormProps) {
 
             <div className="flex justify-center gap-5">
               <Button
-                className="mt-5 justify-center rounded-[0.625rem] bg-[#00A651] text-black"
+                className="mt-5 justify-center rounded-[0.625rem] bg-[#00A651] text-black hover:bg-[#23c16f]"
                 onClick={() => {
                   setPage(0);
                 }}
@@ -194,7 +194,7 @@ export default function SignUpForm({ profileType, setPage }: SignUpFormProps) {
               </Button>
               <Button
                 type="submit"
-                className="mt-5 justify-center rounded-[0.625rem] bg-[#00A651] text-black"
+                className="mt-5 justify-center rounded-[0.625rem] bg-[#00A651] text-black hover:bg-[#00A651]"
               >
                 Submit
               </Button>

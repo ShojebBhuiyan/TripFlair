@@ -22,7 +22,7 @@ export default function SignInTypeForm({
         </h1>
         <div className="flex w-full justify-center gap-5">
           <Button
-            className="rounded-[0.625rem] bg-[#00A651BA]/75 text-black hover:rounded-full"
+            className="rounded-[0.625rem] bg-[#00A651BA]/75 text-black hover:rounded-full hover:bg-[#23c16f]"
             onClick={() => {
               setPage(1);
               setProfileType(ProfileType.Traveller);
@@ -31,7 +31,7 @@ export default function SignInTypeForm({
             Traveller
           </Button>
           <Button
-            className="rounded-[0.625rem] bg-[#00A651BA]/75 text-black hover:rounded-full"
+            className="rounded-[0.625rem] bg-[#00A651BA]/75 text-black hover:rounded-full hover:bg-[#23c16f]"
             onClick={() => {
               setPage(1);
               setProfileType(ProfileType.Business);
