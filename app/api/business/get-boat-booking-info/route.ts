@@ -32,9 +32,11 @@ export async function POST(request: NextRequest) {
     const startDate = new Date(travelDates?.startDate!);
     const returnDate = new Date(travelDates?.returnDate!);
 
-    const totalTripDays = Math.floor(
+    let totalTripDays = Math.floor(
       (returnDate.getTime() - startDate.getTime()) / (1000 * 60 * 60 * 24)
     );
+
+    if (totalTripDays === 0) totalTripDays = 1;
 
     const boatBookingInfo = {
       ...boatService,

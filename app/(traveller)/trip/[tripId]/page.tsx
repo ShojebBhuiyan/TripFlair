@@ -30,9 +30,11 @@ export default async function TripInfo({
   const startDate = new Date(tripPlan.travelInformation.startDate);
   const endDate = new Date(tripPlan.travelInformation.returnDate);
 
-  const totalTripDays = Math.floor(
+  let totalTripDays = Math.floor(
     (endDate.getTime() - startDate.getTime()) / (1000 * 3600 * 24)
   );
+
+  if (totalTripDays === 0) totalTripDays = 1;
 
   // console.log("Outside", tripPlan.boatServiceBooking);
   return (
