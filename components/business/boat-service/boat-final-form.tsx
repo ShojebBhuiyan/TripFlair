@@ -135,7 +135,7 @@ export default function BoatFinalForm({
               <Image
                 key={index}
                 src={previewImagePath}
-                alt={`restaurant-image-${index}`}
+                alt={`boat-image-${index}`}
                 width={400}
                 height={400}
               />

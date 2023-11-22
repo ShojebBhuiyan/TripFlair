@@ -51,11 +51,11 @@ export default async function BusinessDashboardPage() {
             <div>
               <h2 className="text-4xl">Boat Services</h2>
               <Separator className="my-5" />
-              <div className="flex flex-col gap-5">
+              <div className="container flex flex-col gap-5">
                 {businesses?.boatService.map((boatService, index) => (
                   <div
                     key={index}
-                    className="flex items-center justify-around gap-5"
+                    className="mx-32 flex items-center justify-between"
                   >
                     <h2 className="text-2xl">{boatService.name}</h2>
                     <p>{boatService.location}</p>
@@ -68,11 +68,11 @@ export default async function BusinessDashboardPage() {
             <div>
               <h2 className="text-4xl">Hotel Services</h2>
               <Separator className="my-5" />
-              <div className="flex flex-col gap-5">
+              <div className="container flex flex-col gap-5">
                 {businesses.hotelService.map((hotelService, index) => (
                   <div
                     key={index}
-                    className="flex items-center justify-around gap-5"
+                    className="mx-32 flex items-center justify-between gap-5"
                   >
                     <h2 className="text-2xl">{hotelService.name}</h2>
                     <p>{hotelService.location}</p>
@@ -86,12 +86,12 @@ export default async function BusinessDashboardPage() {
               <h2 className="text-4xl">Restaurant Services</h2>
               <Separator className="my-5" />
 
-              <div className="flex flex-col gap-5">
+              <div className="container flex flex-col gap-5">
                 {businesses.restaurantService.map(
                   (restaurantService, index) => (
                     <div
                       key={index}
-                      className="flex items-center justify-around gap-5"
+                      className="mx-32 flex items-center justify-between gap-5"
                     >
                       <h2 className="text-2xl">{restaurantService.name}</h2>
                       <p>{restaurantService.location}</p>
@@ -106,11 +106,11 @@ export default async function BusinessDashboardPage() {
               <h2 className="text-4xl">Horse Riding Services</h2>
               <Separator className="my-5" />
 
-              <div className="flex flex-col gap-5">
+              <div className="container flex flex-col gap-5">
                 {businesses.horseRiding.map((horseRiding, index) => (
                   <div
                     key={index}
-                    className="flex items-center justify-around gap-5"
+                    className="mx-32 flex items-center justify-between gap-5"
                   >
                     <h2 className="text-2xl">{horseRiding.name}</h2>
                     <p>{horseRiding.location}</p>
@@ -124,11 +124,11 @@ export default async function BusinessDashboardPage() {
               <h2 className="text-4xl">Parasailing Services</h2>
               <Separator className="my-5" />
 
-              <div className="flex flex-col gap-5">
+              <div className="container flex flex-col gap-5">
                 {businesses.parasailing.map((parasailing, index) => (
                   <div
                     key={index}
-                    className="flex items-center justify-around gap-5"
+                    className="mx-32 flex items-center justify-between gap-5"
                   >
                     <h2 className="text-2xl">{parasailing.name}</h2>
                     <p>{parasailing.location}</p>
