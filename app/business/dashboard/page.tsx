@@ -2,6 +2,7 @@ import { getServerSession } from "next-auth";
 
 import { BusinessResultsType } from "@/types/business";
 import { Separator } from "@/components/ui/separator";
+import DeleteBusinessButton from "@/components/business/delete-business-button";
 import RegisterBusinessButton from "@/components/business/register-business-button";
 
 import { authOptions } from "../../api/auth/[...nextauth]/options";
@@ -14,7 +15,7 @@ async function getBusinessData(email: string): Promise<BusinessResultsType> {
       headers: {
         "Content-Type": "application/json",
       },
-      cache: "no-store",
+      cache: "no-cache",
       body: JSON.stringify({
         email,
       }),
@@ -58,7 +59,13 @@ export default async function BusinessDashboardPage() {
                     className="mx-32 flex items-center justify-between"
                   >
                     <h2 className="text-2xl">{boatService.name}</h2>
-                    <p>{boatService.location}</p>
+                    <div className="flex items-center gap-2">
+                      <p>{boatService.location}</p>
+                      <DeleteBusinessButton
+                        serviceId={boatService.id}
+                        serviceMode="boat"
+                      />
+                    </div>
                   </div>
                 ))}
               </div>
@@ -75,7 +82,13 @@ export default async function BusinessDashboardPage() {
                     className="mx-32 flex items-center justify-between gap-5"
                   >
                     <h2 className="text-2xl">{hotelService.name}</h2>
-                    <p>{hotelService.location}</p>
+                    <div className="flex items-center gap-2">
+                      <p>{hotelService.location}</p>
+                      <DeleteBusinessButton
+                        serviceId={hotelService.id}
+                        serviceMode="hotel"
+                      />
+                    </div>
                   </div>
                 ))}
               </div>
@@ -94,7 +107,13 @@ export default async function BusinessDashboardPage() {
                       className="mx-32 flex items-center justify-between gap-5"
                     >
                       <h2 className="text-2xl">{restaurantService.name}</h2>
-                      <p>{restaurantService.location}</p>
+                      <div className="flex items-center gap-2">
+                        <p>{restaurantService.location}</p>
+                        <DeleteBusinessButton
+                          serviceId={restaurantService.id}
+                          serviceMode="restaurant"
+                        />
+                      </div>
                     </div>
                   )
                 )}
@@ -113,7 +132,13 @@ export default async function BusinessDashboardPage() {
                     className="mx-32 flex items-center justify-between gap-5"
                   >
                     <h2 className="text-2xl">{horseRiding.name}</h2>
-                    <p>{horseRiding.location}</p>
+                    <div className="flex items-center gap-2">
+                      <p>{horseRiding.location}</p>
+                      <DeleteBusinessButton
+                        serviceId={horseRiding.id}
+                        serviceMode="horse"
+                      />
+                    </div>
                   </div>
                 ))}
               </div>
@@ -131,7 +156,13 @@ export default async function BusinessDashboardPage() {
                     className="mx-32 flex items-center justify-between gap-5"
                   >
                     <h2 className="text-2xl">{parasailing.name}</h2>
-                    <p>{parasailing.location}</p>
+                    <div className="flex items-center gap-2">
+                      <p>{parasailing.location}</p>
+                      <DeleteBusinessButton
+                        serviceId={parasailing.id}
+                        serviceMode="parasailing"
+                      />
+                    </div>
                   </div>
                 ))}
               </div>

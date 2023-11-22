@@ -46,13 +46,13 @@ export default async function RestaurantInfoPage({
         <h1 className="text-center text-4xl font-bold text-black">
           {parasailing.name}
         </h1>
-        <h3 className="text-center text-xl font-semibold text-black">
+        <h3 className="text-center text-2xl text-black">
           {parasailing.subtitle}
         </h3>
       </div>
       <div className="flex flex-col gap-5">
         <h2 className="text-3xl">Overview</h2>
-        <p className="text-xl">{parasailing?.overview}</p>
+        <p className="text-2xl">{parasailing?.overview}</p>
       </div>
       <div className="flex gap-5 overflow-x-auto">
         {parasailing.imageUrls.map((url, index) => (
@@ -69,22 +69,24 @@ export default async function RestaurantInfoPage({
         <h2 className="text-3xl">Our packages:</h2>
         <div className="flex flex-col gap-2">
           <Table>
-            <TableCaption>{`Parasailing Packages`}</TableCaption>
+            <TableCaption className="text-2xl">{`Parasailing Packages`}</TableCaption>
             <TableHeader>
               <TableRow>
-                <TableHead className="text-lg font-medium">
+                <TableHead className="text-3xl font-medium">
                   Package Name
                 </TableHead>
-                <TableHead className="text-lg font-medium">Price</TableHead>
+                <TableHead className="text-3xl font-medium">
+                  Price (BDT)
+                </TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {parasailing.parasailingPackages.map((_package, index) => (
                 <TableRow key={index}>
-                  <TableCell className="text-md">
+                  <TableCell className="max-w-xs overflow-auto break-words text-2xl">
                     {_package.description}
                   </TableCell>
-                  <TableCell className="text-md">{_package.price}</TableCell>
+                  <TableCell className="text-2xl">{_package.price}</TableCell>
                 </TableRow>
               ))}
             </TableBody>
@@ -93,7 +95,7 @@ export default async function RestaurantInfoPage({
       </div>
       <div className="flex flex-col gap-5">
         <h2 className="text-3xl">Location</h2>
-        <p className="text-xl">
+        <p className="text-2xl">
           {`${parasailing.address}, ${
             parasailing.location === TripLocation.Coxsbazar
               ? "Cox's Bazar"
@@ -103,11 +105,11 @@ export default async function RestaurantInfoPage({
       </div>
       <div className="flex flex-col gap-5">
         <h2 className="text-3xl">Google Map Link</h2>
-        <p className="text-xl">{parasailing?.mapLink}</p>
+        <p className="text-2xl">{parasailing?.mapLink}</p>
       </div>
       <div className="flex items-center gap-5">
         <h2 className="text-3xl">Contact Number</h2>
-        <p className="text-xl">{parasailing.contactNumber}</p>
+        <p className="text-2xl">{parasailing.contactNumber}</p>
       </div>
       <div className="self-center">
         <Link

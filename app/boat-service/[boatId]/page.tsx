@@ -33,10 +33,10 @@ export default async function BoatInfoPage({
           {boat.name}
         </h1>
         <h2 className="text-3xl">Overview</h2>
-        <h3 className="text-xl font-semibold text-black">{boat.overview}</h3>
+        <h3 className="text-2xl text-black">{boat.overview}</h3>
         <div className="flex flex-col gap-5">
           <h2 className="text-3xl">Location</h2>
-          <p className="text-xl">
+          <p className="text-2xl">
             {`${boat.address}, ${
               boat.location === TripLocation.Coxsbazar
                 ? "Cox's Bazar"
@@ -47,7 +47,7 @@ export default async function BoatInfoPage({
         <h2 className="text-3xl">Perks</h2>
         <div className="flex flex-col gap-5">
           {boat.perks.map((perk, index) => (
-            <p key={index} className="text-xl">
+            <p key={index} className="text-2xl">
               {`${index + 1}. ${perk}`}
             </p>
           ))}
@@ -59,15 +59,15 @@ export default async function BoatInfoPage({
         </div>
         <div className="flex items-center gap-5">
           <h2 className="text-3xl">Price</h2>
-          <p className="text-xl">{boat.price} BDT</p>
+          <p className="text-2xl">{boat.price} BDT</p>
         </div>
         <h2 className="text-3xl">Booking Policy</h2>
-        <h3 className="text-xl text-black">{boat.bookingPolicy}</h3>
+        <h3 className="text-2xl text-black">{boat.bookingPolicy}</h3>
         <h2 className="text-3xl">Checkin Policy</h2>
-        <h3 className="text-xl text-black">{boat.checkInPolicy}</h3>
+        <h3 className="text-2xl text-black">{boat.checkInPolicy}</h3>
         <div className="flex items-center gap-5">
           <h2 className="text-3xl">Contact Number</h2>
-          <p className="text-xl">{boat.contactNumber}</p>
+          <p className="text-2xl">{boat.contactNumber}</p>
         </div>
       </div>
       <div className="self-center">

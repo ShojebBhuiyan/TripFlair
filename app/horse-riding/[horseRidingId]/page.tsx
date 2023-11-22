@@ -33,10 +33,10 @@ export default async function BoatInfoPage({
           {horse.name}
         </h1>
         <h2 className="text-3xl">Overview</h2>
-        <h3 className="text-xl font-semibold text-black">{horse.overview}</h3>
+        <h3 className="text-2xl text-black">{horse.overview}</h3>
         <div className="flex flex-col gap-5">
           <h2 className="text-3xl">Location</h2>
-          <p className="text-xl">
+          <p className="text-2xl">
             {`${horse.address}, ${
               horse.location === TripLocation.Coxsbazar
                 ? "Cox's Bazar"
@@ -44,7 +44,6 @@ export default async function BoatInfoPage({
             }`}
           </p>
         </div>
-        <h2 className="text-3xl">Perks</h2>
         <div className="flex gap-5 overflow-x-auto">
           {horse.imageUrls.map((url, index) => (
             <Image key={index} src={url} height={500} width={500} alt="boat" />
@@ -52,11 +51,11 @@ export default async function BoatInfoPage({
         </div>
         <div className="flex items-center gap-5">
           <h2 className="text-3xl">Price</h2>
-          <p className="text-xl">{horse.price} BDT</p>
+          <p className="text-2xl">{horse.price} BDT</p>
         </div>
         <div className="flex items-center gap-5">
           <h2 className="text-3xl">Contact Number</h2>
-          <p className="text-xl">{horse.contactNumber}</p>
+          <p className="text-2xl">{horse.contactNumber}</p>
         </div>
       </div>
       <div className="self-center">

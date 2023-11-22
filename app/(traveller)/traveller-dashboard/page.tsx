@@ -47,7 +47,6 @@ export default async function TravellerDashboardPage() {
           <div>
             <div className="flex justify-between">
               <h2 className="text-4xl">Trips</h2>
-
               <Link
                 href={"/location"}
                 className="rounded-lg border border-black px-4 py-2 text-2xl hover:bg-black hover:text-white"
@@ -58,10 +57,7 @@ export default async function TravellerDashboardPage() {
             <Separator className="my-5" />
             <div className="flex flex-col gap-5">
               {trips?.map((trip, index) => (
-                <div
-                  key={index}
-                  className="container flex items-center justify-around gap-5"
-                >
+                <div key={index} className="container grid grid-cols-3 gap-5">
                   <h2 className="text-2xl">{`Trip to ${trip.tripLocation}`}</h2>
                   <h2 className="text-2xl">
                     {trip.travelInformation.startDate}

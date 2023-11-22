@@ -10,7 +10,7 @@ export default function CoxsBazarPage() {
       <div className="flex flex-col gap-5">
         <h1 className="text-6xl font-bold">
           <span className="text-red-900">Explore</span>{" "}
-          <span className="text-green-700">Cox&apos; Bazar</span>!
+          <span className="text-green-700">Cox&apos;s Bazar</span>!
         </h1>
         <p className="text-2xl">
           The longest natural sandy sea beach, Cox&apos;s Bazar is also known

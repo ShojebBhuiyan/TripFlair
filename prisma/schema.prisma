@@ -141,7 +141,7 @@ model RestaurantMenuItem {
 
 model RestaurantBooking {
   id              String            @id @default(uuid()) @db.Uuid
-  restaurant      RestaurantService @relation(fields: [restaurantId], references: [id])
+  restaurant      RestaurantService @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
   restaurantId    String            @db.Uuid
   tripPlan        TripPlan          @relation(fields: [tripPlanId], references: [id])
   tripPlanId      String            @unique @db.Uuid
@@ -190,7 +190,7 @@ model HotelBooking {
   id             String       @id @default(uuid()) @db.Uuid
   tripPlan       TripPlan     @relation(fields: [tripPlanId], references: [id])
   tripPlanId     String       @unique @db.Uuid
-  hotelService   HotelService @relation(fields: [hotelServiceId], references: [id])
+  hotelService   HotelService @relation(fields: [hotelServiceId], references: [id], onDelete: Cascade)
   hotelServiceId String       @db.Uuid
   hotelRoomType  String
   firstName      String
@@ -225,7 +225,7 @@ model HorseRiding {
 
 model HorseRidingBooking {
   id            String      @id @default(uuid()) @db.Uuid
-  horseRiding   HorseRiding @relation(fields: [horseRidingId], references: [id])
+  horseRiding   HorseRiding @relation(fields: [horseRidingId], references: [id], onDelete: Cascade)
   horseRidingId String      @db.Uuid
   tripPlan      TripPlan    @relation(fields: [tripPlanId], references: [id])
   tripPlanId    String      @db.Uuid
@@ -263,7 +263,7 @@ model BoatService {
 
 model BoatServiceBooking {
   id            String      @id @default(uuid()) @db.Uuid
-  boatService   BoatService @relation(fields: [boatServiceId], references: [id])
+  boatService   BoatService @relation(fields: [boatServiceId], references: [id], onDelete: Cascade)
   boatServiceId String      @db.Uuid
   tripPlan      TripPlan    @relation(fields: [tripPlanId], references: [id])
   tripPlanId    String      @db.Uuid
@@ -309,7 +309,7 @@ model ParasailingPackages {
 
 model ParasailingBooking {
   id                  String      @id @default(uuid()) @db.Uuid
-  parasailing         Parasailing @relation(fields: [parasailingId], references: [id])
+  parasailing         Parasailing @relation(fields: [parasailingId], references: [id], onDelete: Cascade)
   parasailingId       String      @db.Uuid
   tripPlan            TripPlan    @relation(fields: [tripPlanId], references: [id])
   tripPlanId          String      @db.Uuid

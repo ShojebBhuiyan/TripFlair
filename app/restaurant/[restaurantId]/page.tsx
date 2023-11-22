@@ -52,7 +52,7 @@ export default async function RestaurantInfoPage({
       </div>
       <div className="flex flex-col gap-5">
         <h2 className="text-3xl">Overview</h2>
-        <p className="text-xl">{restaurant?.description}</p>
+        <p className="text-2xl">{restaurant?.description}</p>
       </div>
       <div className="flex gap-5 overflow-x-auto">
         {restaurant.imageUrls.map((url, index) => (
@@ -69,18 +69,22 @@ export default async function RestaurantInfoPage({
         <h2 className="text-3xl">Our menu:</h2>
         <div className="flex flex-col gap-2">
           <Table>
-            <TableCaption>{`Restaurant Menu`}</TableCaption>
+            <TableCaption className="text-2xl">{`Restaurant Menu`}</TableCaption>
             <TableHeader>
               <TableRow>
-                <TableHead className="text-lg font-medium">Item Name</TableHead>
-                <TableHead className="text-lg font-medium">Price</TableHead>
+                <TableHead className="text-2xl font-medium">
+                  Item Name
+                </TableHead>
+                <TableHead className="text-2xl font-medium">Price</TableHead>
               </TableRow>
             </TableHeader>
             <TableBody>
               {restaurant.menuItems.map((menuItem, index) => (
                 <TableRow key={index}>
-                  <TableCell className="text-md">{menuItem.name}</TableCell>
-                  <TableCell className="text-md">{menuItem.price}</TableCell>
+                  <TableCell className="max-w-xs overflow-auto break-words text-2xl">
+                    {menuItem.name}
+                  </TableCell>
+                  <TableCell className="text-2xl">{menuItem.price}</TableCell>
                 </TableRow>
               ))}
             </TableBody>

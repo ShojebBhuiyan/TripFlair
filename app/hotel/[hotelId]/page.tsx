@@ -59,7 +59,7 @@ export default function HotelInfoPage({
             <h1 className="text-center text-4xl font-bold text-black">
               {hotel.name}
             </h1>
-            <h3 className="text-center text-xl font-semibold text-black">
+            <h3 className="text-center text-2xl font-semibold text-black">
               {hotel.slogan}
             </h3>
           </div>
@@ -76,11 +76,11 @@ export default function HotelInfoPage({
           </div>
           <div className="flex flex-col gap-5">
             <h2 className="text-3xl">Overview</h2>
-            <p className="text-xl">{hotel?.overview}</p>
+            <p className="text-2xl">{hotel?.overview}</p>
           </div>
           <div className="flex flex-col gap-5">
             <h2 className="text-3xl">Location</h2>
-            <p className="text-xl">
+            <p className="text-2xl">
               {`${hotel.address}, ${
                 hotel.location === TripLocation.Coxsbazar
                   ? "Cox's Bazar"
@@ -92,7 +92,7 @@ export default function HotelInfoPage({
             <h2 className="text-3xl">We offer:</h2>
             <div className="flex flex-col gap-2">
               {hotel.perks.map((perk) => (
-                <p className="text-lg">{perk}</p>
+                <p className="text-2xl">{perk}</p>
               ))}
             </div>
           </div>
@@ -100,13 +100,15 @@ export default function HotelInfoPage({
             <h2 className="text-3xl">Our rooms:</h2>
             <div className="flex flex-col gap-2">
               <Table>
-                <TableCaption>{`Hotel Rooms (Click to Book)`}</TableCaption>
+                <TableCaption className="text-2xl">{`Hotel Rooms (Click to Book)`}</TableCaption>
                 <TableHeader>
                   <TableRow>
-                    <TableHead className="text-lg font-medium">
+                    <TableHead className="text-3xl font-medium">
                       Room Type
                     </TableHead>
-                    <TableHead className="text-lg font-medium">Price</TableHead>
+                    <TableHead className="text-3xl font-medium">
+                      Price (BDT)
+                    </TableHead>
                   </TableRow>
                 </TableHeader>
                 <TableBody>
@@ -122,10 +124,10 @@ export default function HotelInfoPage({
                         );
                       }}
                     >
-                      <TableCell className="text-md">
+                      <TableCell className="max-w-xs overflow-auto break-words text-2xl">
                         {hotelRoom.type}
                       </TableCell>
-                      <TableCell className="text-md">
+                      <TableCell className="text-2xl">
                         {hotelRoom.price}
                       </TableCell>
                     </TableRow>
@@ -136,15 +138,15 @@ export default function HotelInfoPage({
           </div>
           <div className="flex items-center gap-5">
             <h2 className="text-3xl">Check-In Time</h2>
-            <p className="text-xl">{hotel.checkInTime}</p>
+            <p className="text-2xl">{hotel.checkInTime}</p>
           </div>
           <div className="flex items-center gap-5">
             <h2 className="text-3xl">Check-Out Time</h2>
-            <p className="text-xl">{hotel.checkOutTime}</p>
+            <p className="text-2xl">{hotel.checkOutTime}</p>
           </div>
           <div className="flex items-center gap-5">
             <h2 className="text-3xl">Contact Number</h2>
-            <p className="text-xl">{hotel.contactNumber}</p>
+            <p className="text-2xl">{hotel.contactNumber}</p>
           </div>
         </section>
       ) : (

@@ -4,10 +4,10 @@ import { getToken } from "next-auth/jwt";
 
 export async function middleware(request: NextRequest, _next: NextFetchEvent) {
   const { pathname } = request.nextUrl;
-  const onlyTravllerRoutes = ["/custom-plan"];
+  const onlyTravelerRoutes = ["/custom-plan"];
   const onlyBusinessRoutes = ["/business"];
 
-  const matchesTravellerPath = onlyTravllerRoutes.some((path) =>
+  const matchesTravellerPath = onlyTravelerRoutes.some((path) =>
     pathname.startsWith(path)
   );
 
