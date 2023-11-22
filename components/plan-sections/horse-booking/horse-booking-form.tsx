@@ -6,7 +6,7 @@ import { useSession } from "next-auth/react";
 import { useForm } from "react-hook-form";
 import { z } from "zod";
 
-import { BoatBookingInfo } from "@/types/entertainment";
+import { HorseBookingInfo } from "@/types/entertainment";
 import {
   Select,
   SelectContent,
@@ -30,23 +30,23 @@ const bookingFormSchema = z.object({
   firstName: z.string(),
   lastName: z.string(),
   phoneNumber: z.string(),
-  reservationDateTime: z.string(),
+  dateTime: z.string(),
   tripDay: z.string(),
-  totalBoats: z.number(),
+  totalPerson: z.number(),
 });
 
-interface BoatBookingFormProps {
-  boatBookingInfo: BoatBookingInfo;
+interface HorseBookingFormProps {
+  horseBookingInfo: HorseBookingInfo;
   tripId: string;
   setPage: (page: number) => void;
 }
 
-export default function BoatBookingForm({
-  boatBookingInfo,
+export default function HorseBookingForm({
+  horseBookingInfo,
   tripId,
   setPage,
-}: BoatBookingFormProps) {
-  const [totalBoats, setTotalBoats] = useState(0);
+}: HorseBookingFormProps) {
+  const [totalPerson, setTotalPerson] = useState(0);
 
   const form = useForm<z.infer<typeof bookingFormSchema>>({
     resolver: zodResolver(bookingFormSchema),
@@ -58,21 +58,21 @@ export default function BoatBookingForm({
   const session = useSession();
 
   async function onSubmit(values: z.infer<typeof bookingFormSchema>) {
-    const booking = await fetch("/api/traveller/trips/book-boat", {
+    const booking = await fetch("/api/traveller/trips/book-horse", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
         userId: session.data?.user?.id,
-        boatId: boatBookingInfo.id,
+        horseRidingId: horseBookingInfo.id,
         tripId,
         firstName: values.firstName,
         lastName: values.lastName,
         phoneNumber: values.phoneNumber,
-        reservationDateTime: values.reservationDateTime,
-        totalBoats: values.totalBoats,
-        totalCost: boatBookingInfo.price * totalBoats,
+        dateTime: values.dateTime,
+        totalPerson: values.totalPerson,
+        totalCost: horseBookingInfo.price * values.totalPerson,
         tripDay: Number(values.tripDay),
       }),
     }).then(() => {
@@ -144,7 +144,7 @@ export default function BoatBookingForm({
                           </SelectTrigger>
                         </FormControl>
                         <SelectContent>
-                          {Array(boatBookingInfo.totalTripDays)
+                          {Array(horseBookingInfo.totalTripDays)
                             .fill(null)
                             .map((_, index) => (
                               <SelectItem key={index} value={`${index + 1}`}>
@@ -161,7 +161,7 @@ export default function BoatBookingForm({
 
               <FormField
                 control={form.control}
-                name="reservationDateTime"
+                name="dateTime"
                 render={({ field }) => (
                   <FormItem>
                     <FormLabel>Reservation Date and Time</FormLabel>
@@ -174,17 +174,20 @@ export default function BoatBookingForm({
               />
               <FormField
                 control={form.control}
-                name="totalBoats"
+                name="totalPerson"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel>Total Boats</FormLabel>
+                    <FormLabel>Total Person</FormLabel>
                     <FormControl>
                       <Input
                         type="number"
                         {...field}
                         onChange={(e) => {
-                          form.setValue("totalBoats", parseInt(e.target.value));
-                          setTotalBoats(parseInt(e.target.value));
+                          form.setValue(
+                            "totalPerson",
+                            parseInt(e.target.value)
+                          );
+                          setTotalPerson(parseInt(e.target.value));
                         }}
                       />
                     </FormControl>
@@ -194,7 +197,9 @@ export default function BoatBookingForm({
               />
             </div>
             <h3 className="text-2xl">
-              {`Your total booking cost: ${boatBookingInfo.price * totalBoats}`}
+              {`Your total booking cost: ${
+                horseBookingInfo.price * totalPerson
+              }`}
             </h3>
             <Button
               type="submit"

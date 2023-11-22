@@ -1,6 +1,8 @@
 import {
   BoatService,
   BoatServiceBooking,
+  HorseRiding,
+  HorseRidingBooking,
   HotelBooking,
   HotelService,
   ParasailingBooking,
@@ -8,7 +10,6 @@ import {
   TripPlan,
 } from "@prisma/client";
 
-import { BoatBookingInfo } from "./entertainment";
 import { RestaurantBookingInfo } from "./restaurant";
 
 export type TripResultsType = {
@@ -36,6 +37,11 @@ export type TripPlanType = TripPlan & {
   parasailingBooking:
     | (ParasailingBooking & {
         parasailing: BoatService;
+      })[]
+    | null;
+  horseRidingBooking:
+    | (HorseRidingBooking & {
+        horseRiding: HorseRiding;
       })[]
     | null;
 };

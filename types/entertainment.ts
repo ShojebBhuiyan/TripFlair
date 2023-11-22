@@ -9,3 +9,7 @@ export type EntertainmentType = {
 export type BoatBookingInfo = BoatService & {
   totalTripDays: number;
 };
+
+export type HorseBookingInfo = HorseRiding & {
+  totalTripDays: number;
+};

@@ -204,13 +204,41 @@ export default function PlanAccordion({
                               {`Boat Name: ${boatService.boatService.name}`}
                             </h1>
                             <h1 className="text-2xl">
-                              {`Boat Location: ${boatService.boatService.address}, ${boatService.boatService.location}`}
+                              {`Location: ${boatService.boatService.address}, ${boatService.boatService.location}`}
                             </h1>
                             <h1 className="text-2xl">
-                              {`Boat Cost: ${boatService.totalCost}`}
+                              {`Cost: ${boatService.totalCost}`}
                             </h1>
                             <h1 className="text-2xl">
-                              {`Boat Contact Number: ${boatService.boatService.contactNumber}`}
+                              {`Contact Number: ${boatService.boatService.contactNumber}`}
+                            </h1>
+                            <Separator />
+                          </div>
+                        ) : (
+                          <></>
+                        )}
+                      </div>
+                    ))}
+                    {tripPlan.horseRidingBooking?.map((horseRiding) => (
+                      <div className="flex flex-col gap-4">
+                        {horseRiding.tripDay === index + 1 ? (
+                          <div className="flex flex-col gap-4">
+                            <div className="flex justify-between">
+                              <h1 className="text-3xl">Horse Riding</h1>
+                              <h1 className="text-3xl">{`${horseRiding.dateTime}`}</h1>
+                            </div>
+                            <Separator />
+                            <h1 className="text-2xl">
+                              {`Horse Riding Service Name: ${horseRiding.horseRiding.name}`}
+                            </h1>
+                            <h1 className="text-2xl">
+                              {`Location: ${horseRiding.horseRiding.address}, ${horseRiding.horseRiding.location}`}
+                            </h1>
+                            <h1 className="text-2xl">
+                              {`Horse Cost: ${horseRiding.cost}`}
+                            </h1>
+                            <h1 className="text-2xl">
+                              {`Contact Number: ${horseRiding.horseRiding.contactNumber}`}
                             </h1>
                             <Separator />
                           </div>
