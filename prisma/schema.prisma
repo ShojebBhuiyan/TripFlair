@@ -79,13 +79,14 @@ model TripPlan {
   boatServiceBooking BoatServiceBooking[]
   horseRidingBooking HorseRidingBooking[]
   parasailingBooking ParasailingBooking[]
+  confirmed          Boolean              @default(false)
   createdAt          DateTime             @default(now())
   updatedAt          DateTime             @updatedAt
 }
 
 model TravelInformation {
   id                 String          @id @default(uuid()) @db.Uuid
-  tripPlan           TripPlan        @relation(fields: [tripPlanId], references: [id])
+  tripPlan           TripPlan        @relation(fields: [tripPlanId], references: [id], onDelete: Cascade)
   tripPlanId         String          @unique @db.Uuid
   startDate          String
   returnDate         String
@@ -143,7 +144,7 @@ model RestaurantBooking {
   id              String            @id @default(uuid()) @db.Uuid
   restaurant      RestaurantService @relation(fields: [restaurantId], references: [id], onDelete: Cascade)
   restaurantId    String            @db.Uuid
-  tripPlan        TripPlan          @relation(fields: [tripPlanId], references: [id])
+  tripPlan        TripPlan          @relation(fields: [tripPlanId], references: [id], onDelete: Cascade)
   tripPlanId      String            @unique @db.Uuid
   firstName       String
   lastName        String
@@ -227,7 +228,7 @@ model HorseRidingBooking {
   id            String      @id @default(uuid()) @db.Uuid
   horseRiding   HorseRiding @relation(fields: [horseRidingId], references: [id], onDelete: Cascade)
   horseRidingId String      @db.Uuid
-  tripPlan      TripPlan    @relation(fields: [tripPlanId], references: [id])
+  tripPlan      TripPlan    @relation(fields: [tripPlanId], references: [id], onDelete: Cascade)
   tripPlanId    String      @db.Uuid
   firstName     String
   lastName      String
@@ -265,7 +266,7 @@ model BoatServiceBooking {
   id            String      @id @default(uuid()) @db.Uuid
   boatService   BoatService @relation(fields: [boatServiceId], references: [id], onDelete: Cascade)
   boatServiceId String      @db.Uuid
-  tripPlan      TripPlan    @relation(fields: [tripPlanId], references: [id])
+  tripPlan      TripPlan    @relation(fields: [tripPlanId], references: [id], onDelete: Cascade)
   tripPlanId    String      @db.Uuid
   firstName     String
   lastName      String
@@ -311,7 +312,7 @@ model ParasailingBooking {
   id                  String      @id @default(uuid()) @db.Uuid
   parasailing         Parasailing @relation(fields: [parasailingId], references: [id], onDelete: Cascade)
   parasailingId       String      @db.Uuid
-  tripPlan            TripPlan    @relation(fields: [tripPlanId], references: [id])
+  tripPlan            TripPlan    @relation(fields: [tripPlanId], references: [id], onDelete: Cascade)
   tripPlanId          String      @db.Uuid
   packageDescription  String
   firstName           String

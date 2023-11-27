@@ -1,5 +1,7 @@
+import Link from "next/link";
 import { BoatService, TripLocation } from "@prisma/client";
 
+import { Button } from "@/components/ui/button";
 import BoatCards from "@/components/plan-sections/boat-booking/boat-cards";
 
 async function fetchBoats(tripLocation: TripLocation): Promise<BoatService[]> {
@@ -38,6 +40,13 @@ export default async function BoatServicePage({
         {boats.map((boat, index) => (
           <BoatCards tripId={searchParams.tripId} key={index} boat={boat} />
         ))}
+      </div>
+      <div className="flex items-center justify-end">
+        <Button>
+          <Link href={`/custom-plan/options?tripId=${searchParams.tripId}`}>
+            Skip
+          </Link>
+        </Button>
       </div>
     </section>
   );

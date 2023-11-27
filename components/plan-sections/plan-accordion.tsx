@@ -47,7 +47,7 @@ export default function PlanAccordion({
               {`Number of Travellers: ${tripPlan?.travelInformation?.numberOfTravellers}`}
             </h1>
             <h1 className="text-2xl">
-              {`Travel Cost: ${tripPlan?.travelInformation?.totalCost} BDT`}
+              {`Estimated Cost: ${tripPlan?.travelInformation?.totalCost} BDT`}
             </h1>
           </div>
         </AccordionContent>
@@ -81,6 +81,8 @@ export default function PlanAccordion({
                 {`Total hotel charges: ${tripPlan?.hotelBooking?.cost} BDT`}
               </h1>
             </div>
+          ) : tripPlan.confirmed ? (
+            <h1 className="text-2xl">No Hotel Information</h1>
           ) : (
             <div className="flex flex-col gap-4">
               <h1 className="text-2xl">No Hotel Information</h1>
@@ -121,6 +123,8 @@ export default function PlanAccordion({
                 {`Estimated budget: ${tripPlan?.restaurantBooking.estimatedBudget} BDT`}
               </h1>
             </div>
+          ) : tripPlan.confirmed ? (
+            <h1 className="text-2xl">No Restaurant Information</h1>
           ) : (
             <div className="flex flex-col gap-4">
               <h1 className="text-2xl">No Restaurant Information</h1>
@@ -142,7 +146,8 @@ export default function PlanAccordion({
         <AccordionTrigger className="text-4xl">Itinerary</AccordionTrigger>
         <AccordionContent>
           {tripPlan.boatServiceBooking?.length! ||
-          tripPlan.parasailingBooking?.length! > 0 ? (
+          tripPlan.parasailingBooking?.length! ||
+          tripPlan.horseRidingBooking?.length! ? (
             <Tabs defaultValue="day-1" className="w-full">
               <TabsList className="flex w-full justify-center gap-5">
                 {Array(totalTripDays)
@@ -262,6 +267,8 @@ export default function PlanAccordion({
                   </TabsContent>
                 ))}
             </Tabs>
+          ) : tripPlan.confirmed ? (
+            <h1 className="text-2xl">No Itinerary Information</h1>
           ) : (
             <div className="flex flex-col gap-4">
               <h1 className="text-2xl">No Itinerary Planned</h1>

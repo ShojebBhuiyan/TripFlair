@@ -1,5 +1,7 @@
+import Link from "next/link";
 import { HorseRiding, TripLocation } from "@prisma/client";
 
+import { Button } from "@/components/ui/button";
 import HorseCards from "@/components/plan-sections/horse-booking/horse-cards";
 
 async function fetchHorseRidingServices(
@@ -43,6 +45,13 @@ export default async function BoatServicePage({
         {horses.map((horse, index) => (
           <HorseCards tripId={searchParams.tripId} key={index} horse={horse} />
         ))}
+      </div>
+      <div className="flex items-center justify-end">
+        <Button>
+          <Link href={`/custom-plan/options?tripId=${searchParams.tripId}`}>
+            Skip
+          </Link>
+        </Button>
       </div>
     </section>
   );

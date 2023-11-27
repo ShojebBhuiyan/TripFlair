@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { RestaurantService, TripLocation } from "@prisma/client";
 
+import { Button } from "@/components/ui/button";
 import RestaurantCards from "@/components/plan-sections/restaurant-booking/restaurant-cards";
 
 async function fetchRestaurants(
@@ -47,6 +48,13 @@ export default async function HotelPage({
             restaurant={restaurant}
           />
         ))}
+      </div>
+      <div className="flex items-center justify-end">
+        <Button>
+          <Link href={`/custom-plan/options?tripId=${searchParams.tripId}`}>
+            Skip
+          </Link>
+        </Button>
       </div>
     </section>
   );

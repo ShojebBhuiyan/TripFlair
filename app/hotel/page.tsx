@@ -1,5 +1,7 @@
+import Link from "next/link";
 import { HotelService, TripLocation } from "@prisma/client";
 
+import { Button } from "@/components/ui/button";
 import HotelCards from "@/components/plan-sections/hotel-booking/hotel-cards";
 
 async function fetchHotels(
@@ -41,6 +43,13 @@ export default async function HotelPage({
         {hotels.map((hotel, index) => (
           <HotelCards tripId={searchParams.tripId} key={index} hotel={hotel} />
         ))}
+      </div>
+      <div className="flex items-center justify-end">
+        <Button>
+          <Link href={`/custom-plan/options?tripId=${searchParams.tripId}`}>
+            Skip
+          </Link>
+        </Button>
       </div>
     </section>
   );

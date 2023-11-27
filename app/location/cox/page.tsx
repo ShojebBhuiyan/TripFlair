@@ -78,14 +78,13 @@ export default function CoxsBazarPage() {
         </h1>
         <p className="text-2xl">
           Find out the best travel guidance, restaurants, things to do and many
-          more on our website. To get the full plan click the link below.
+          more on our website.
         </p>
-        <GetPlanButton />
       </div>
       <div className="flex flex-col gap-5">
         <p className="text-2xl">
-          However, for customizing your own trip plan click the next button
-          below to go to the next step.
+          To customize your own trip plan click the next button below to go to
+          the next step.
         </p>
         <div className="self-end">
           <CustomPlanButton location="coxs-bazar" />

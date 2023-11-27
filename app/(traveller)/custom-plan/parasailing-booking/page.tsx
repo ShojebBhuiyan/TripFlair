@@ -21,7 +21,7 @@ async function fetchParasailingBookingInfo(
   return data;
 }
 
-export default async function BoatBookingPage({
+export default async function ParasaiingBookingPage({
   searchParams,
 }: {
   searchParams: {

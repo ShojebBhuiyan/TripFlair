@@ -124,7 +124,7 @@ export default function TravelInfoForm() {
             name="totalCost"
             render={({ field }) => (
               <FormItem className="grid w-[40rem] grid-cols-2 items-center">
-                <FormLabel>Total travel cost: </FormLabel>
+                <FormLabel>Estimated cost: </FormLabel>
                 <FormControl>
                   <Input
                     className="w-[10rem]"

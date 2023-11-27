@@ -1,4 +1,5 @@
 import { TripPlanType } from "@/types/trip";
+import ConfirmPlanButton from "@/components/plan-sections/confirm-plan-button";
 import PlanAccordion from "@/components/plan-sections/plan-accordion";
 
 async function fetchTripPlan(tripId: string): Promise<TripPlanType> {
@@ -42,6 +43,13 @@ export default async function TripInfo({
       {!isLoading && tripPlan ? (
         <section className="container flex flex-col gap-5 py-10">
           <PlanAccordion tripPlan={tripPlan} totalTripDays={totalTripDays} />
+          {tripPlan.confirmed ? (
+            <></>
+          ) : (
+            <div className="flex justify-center">
+              <ConfirmPlanButton tripId={params.tripId} />
+            </div>
+          )}
         </section>
       ) : (
         <>Loading...</>

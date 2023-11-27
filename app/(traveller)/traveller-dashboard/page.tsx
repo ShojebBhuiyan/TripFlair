@@ -1,8 +1,10 @@
 import Link from "next/link";
+import { TripLocation } from "@prisma/client";
 import { getServerSession } from "next-auth";
 
 import { TripResultsType } from "@/types/trip";
 import { Separator } from "@/components/ui/separator";
+import DeleteTripButton from "@/components/plan-sections/delete-trip-button";
 import PlanTripsButton from "@/components/traveller/plan-trip-button";
 
 import { authOptions } from "../../api/auth/[...nextauth]/options";
@@ -58,11 +60,18 @@ export default async function TravellerDashboardPage() {
             <div className="flex flex-col gap-5">
               {trips?.map((trip, index) => (
                 <div key={index} className="container grid grid-cols-3 gap-5">
-                  <h2 className="text-2xl">{`Trip to ${trip.tripLocation}`}</h2>
+                  <h2 className="text-2xl">{`Trip to ${
+                    trip.tripLocation === TripLocation.Coxsbazar
+                      ? "Cox's Bazar"
+                      : trip?.tripLocation
+                  }`}</h2>
                   <h2 className="text-2xl">
                     {trip.travelInformation.startDate}
                   </h2>
-                  <Link href={`/trip/${trip.id}`}>Go to details</Link>
+                  <div className="flex items-center justify-end gap-2">
+                    <Link href={`/trip/${trip.id}`}>Go to details</Link>
+                    <DeleteTripButton tripId={trip.id} />
+                  </div>
                 </div>
               ))}
             </div>

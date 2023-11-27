@@ -1,5 +1,7 @@
+import Link from "next/link";
 import { Parasailing, TripLocation } from "@prisma/client";
 
+import { Button } from "@/components/ui/button";
 import ParasailingCards from "@/components/plan-sections/parasailing-booking/parasailing-cards";
 
 async function fetchParasailings(
@@ -49,6 +51,13 @@ export default async function BoatServicePage({
             parasailing={parasailing}
           />
         ))}
+      </div>
+      <div className="flex items-center justify-end">
+        <Button>
+          <Link href={`/custom-plan/options?tripId=${searchParams.tripId}`}>
+            Skip
+          </Link>
+        </Button>
       </div>
     </section>
   );
