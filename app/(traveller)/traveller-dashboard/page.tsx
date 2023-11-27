@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { formatTimeString } from "@/utils/time";
 import { TripLocation } from "@prisma/client";
 import { getServerSession } from "next-auth";
 
@@ -66,7 +67,7 @@ export default async function TravellerDashboardPage() {
                       : trip?.tripLocation
                   }`}</h2>
                   <h2 className="text-2xl">
-                    {trip.travelInformation.startDate}
+                    {formatTimeString(trip.travelInformation.startDate)}
                   </h2>
                   <div className="flex items-center justify-end gap-2">
                     <Link href={`/trip/${trip.id}`}>Go to details</Link>

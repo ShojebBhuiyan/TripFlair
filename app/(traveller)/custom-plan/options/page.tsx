@@ -15,7 +15,7 @@ export default function OptionsPage({
       <div className="mt-6 rounded-lg px-[10vw] py-[10vh] text-center">
         <p className="mb-4 text-3xl">What would you like to reserve?</p>
         <div className="flex justify-center gap-10">
-          <Button className="mt-5 rounded-[0.625rem] bg-[#00A651] text-white">
+          <Button className="mt-5 w-[12rem] rounded-[0.625rem] bg-[#00A651] text-white">
             <Link
               href={`/hotel?tripId=${
                 searchParams.tripId
@@ -24,7 +24,7 @@ export default function OptionsPage({
               Book a Hotel
             </Link>
           </Button>
-          <Button className="mt-5 rounded-[0.625rem] bg-[#00A651] text-white">
+          <Button className="mt-5 w-[12rem] rounded-[0.625rem] bg-[#00A651] text-white">
             <Link
               href={`/restaurant?tripId=${
                 searchParams.tripId
@@ -33,7 +33,7 @@ export default function OptionsPage({
               Pick a Restaurant
             </Link>
           </Button>
-          <Button className="mt-5 rounded-[0.625rem] bg-[#00A651] text-white">
+          <Button className="mt-5 w-[12rem] rounded-[0.625rem] bg-[#00A651] text-white">
             <Link
               href={`/entertainment?tripId=${
                 searchParams.tripId
@@ -44,7 +44,7 @@ export default function OptionsPage({
           </Button>
         </div>
         <div className="flex justify-center">
-          <Button className="mt-5 rounded-[0.625rem] bg-[#00A651] text-white">
+          <Button className="mt-5 w-[12rem] rounded-[0.625rem] bg-[#00A651] text-white">
             <Link href={`/traveller-dashboard`}>Go to Dashboard</Link>
           </Button>
         </div>

@@ -22,22 +22,44 @@ export default function ParasailingBookingSuccess({
         <h1 className="mb-6 text-5xl">Success!</h1>
         <p className="mb-4 text-3xl">Your reservation is done!</p>
       </div>
-      <div className="flex justify-around gap-5">
+      <div className="flex justify-center gap-10">
         <Button
-          onClick={() => router.push("/traveller-dashboard")}
-          className="mt-5 rounded-[0.625rem] bg-[#00A651] text-white"
+          onClick={() =>
+            router.push(
+              `/hotel?tripId=${tripId}&location=${tripLocation?.toLowerCase()}`
+            )
+          }
+          className="mt-5 w-[12rem] rounded-[0.625rem] bg-[#00A651] text-white"
         >
-          Go to Dashboard
+          Book a Hotel
         </Button>
         <Button
           onClick={() =>
             router.push(
-              `/entertainment?tripId=${tripId}&location=${tripLocation.toLowerCase()}`
+              `/restaurant?tripId=${tripId}&location=${tripLocation?.toLowerCase()}`
             )
           }
-          className="mt-5 rounded-[0.625rem] bg-[#00A651] text-white"
+          className="mt-5 w-[12rem] rounded-[0.625rem] bg-[#00A651] text-white"
         >
-          Choose more local entertainments
+          Pick a Restaurant
+        </Button>
+        <Button
+          onClick={() =>
+            router.push(
+              `/entertainment?tripId=${tripId}&location=${tripLocation?.toLowerCase()}`
+            )
+          }
+          className="mt-5 w-[12rem] rounded-[0.625rem] bg-[#00A651] text-white"
+        >
+          Pick an Entertainment
+        </Button>
+      </div>
+      <div className="flex justify-center">
+        <Button
+          onClick={() => router.push("/traveller-dashboard")}
+          className="mt-5 w-[12rem] rounded-[0.625rem] bg-[#00A651] text-white"
+        >
+          Go to Dashboard
         </Button>
       </div>
     </div>

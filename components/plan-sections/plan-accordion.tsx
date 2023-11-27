@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import { formatTimeString } from "@/utils/time";
 
 import { TripPlanType } from "@/types/trip";
 import {
@@ -32,10 +33,14 @@ export default function PlanAccordion({
         <AccordionContent>
           <div className="flex flex-col gap-4">
             <h1 className="text-2xl">
-              {`Date of Departure: ${tripPlan?.travelInformation?.startDate}`}
+              {`Date of Departure: ${formatTimeString(
+                tripPlan?.travelInformation?.startDate
+              )}`}
             </h1>
             <h1 className="text-2xl">
-              {`Date of Returning: ${tripPlan?.travelInformation?.returnDate}`}
+              {`Date of Returning: ${formatTimeString(
+                tripPlan?.travelInformation?.returnDate
+              )}`}
             </h1>
             <h1 className="text-2xl">
               {`Travelling from: ${tripPlan?.travelInformation?.presentLocation}`}
@@ -173,7 +178,9 @@ export default function PlanAccordion({
                             <div className="flex flex-col gap-4">
                               <div className="flex justify-between">
                                 <h1 className="text-3xl">Parasailing</h1>
-                                <h1 className="text-3xl">{`${parasailingBookingInfo.reservationDateTime}`}</h1>
+                                <h1 className="text-3xl">{`${formatTimeString(
+                                  parasailingBookingInfo.reservationDateTime
+                                )}`}</h1>
                               </div>
                               <Separator />
                               <h1 className="text-2xl">
@@ -202,7 +209,9 @@ export default function PlanAccordion({
                           <div className="flex flex-col gap-4">
                             <div className="flex justify-between">
                               <h1 className="text-3xl">Boat Trip</h1>
-                              <h1 className="text-3xl">{`${boatService.dateTime}`}</h1>
+                              <h1 className="text-3xl">{`${formatTimeString(
+                                boatService.dateTime
+                              )}`}</h1>
                             </div>
                             <Separator />
                             <h1 className="text-2xl">
@@ -230,7 +239,9 @@ export default function PlanAccordion({
                           <div className="flex flex-col gap-4">
                             <div className="flex justify-between">
                               <h1 className="text-3xl">Horse Riding</h1>
-                              <h1 className="text-3xl">{`${horseRiding.dateTime}`}</h1>
+                              <h1 className="text-3xl">{`${formatTimeString(
+                                horseRiding.dateTime
+                              )}`}</h1>
                             </div>
                             <Separator />
                             <h1 className="text-2xl">
@@ -252,18 +263,22 @@ export default function PlanAccordion({
                         )}
                       </div>
                     ))}
-                    <div className="mt-5 flex items-center justify-center">
-                      <Link
-                        className="self-center"
-                        href={`/entertainment?tripId=${
-                          tripPlan.id
-                        }&location=${tripPlan.tripLocation.toLowerCase()}`}
-                      >
-                        <Button variant={"link"} className="text-2xl">
-                          Choose local entertainments
-                        </Button>
-                      </Link>
-                    </div>
+                    {tripPlan.confirmed ? (
+                      <></>
+                    ) : (
+                      <div className="mt-5 flex items-center justify-center">
+                        <Link
+                          className="self-center"
+                          href={`/entertainment?tripId=${
+                            tripPlan.id
+                          }&location=${tripPlan.tripLocation.toLowerCase()}`}
+                        >
+                          <Button variant={"link"} className="text-2xl">
+                            Choose local entertainments
+                          </Button>
+                        </Link>
+                      </div>
+                    )}
                   </TabsContent>
                 ))}
             </Tabs>

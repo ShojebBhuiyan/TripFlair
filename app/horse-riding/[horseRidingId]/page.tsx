@@ -64,7 +64,7 @@ export default async function BoatInfoPage({
             searchParams.tripId
           }&horseRidingId=${params.horseRidingId}`}
         >
-          <Button>Book Horse</Button>
+          <Button>Book a Ride</Button>
         </Link>
       </div>
     </section>

@@ -23,7 +23,7 @@ export default function TravelInfoSuccess() {
                 }&location=${travelContext.tripLocation?.toLowerCase()}`
               )
             }
-            className="mt-5 rounded-[0.625rem] bg-[#00A651] text-white"
+            className="mt-5 w-[12rem] rounded-[0.625rem] bg-[#00A651] text-white"
           >
             Book a Hotel
           </Button>
@@ -35,7 +35,7 @@ export default function TravelInfoSuccess() {
                 }&location=${travelContext.tripLocation?.toLowerCase()}`
               )
             }
-            className="mt-5 rounded-[0.625rem] bg-[#00A651] text-white"
+            className="mt-5 w-[12rem] rounded-[0.625rem] bg-[#00A651] text-white"
           >
             Pick a Restaurant
           </Button>
@@ -47,7 +47,7 @@ export default function TravelInfoSuccess() {
                 }&location=${travelContext.tripLocation?.toLowerCase()}`
               )
             }
-            className="mt-5 rounded-[0.625rem] bg-[#00A651] text-white"
+            className="mt-5 w-[12rem] rounded-[0.625rem] bg-[#00A651] text-white"
           >
             Pick an Entertainment
           </Button>
@@ -55,7 +55,7 @@ export default function TravelInfoSuccess() {
         <div className="flex justify-center">
           <Button
             onClick={() => router.push("/traveller-dashboard")}
-            className="mt-5 rounded-[0.625rem] bg-[#00A651] text-white"
+            className="mt-5 w-[12rem] rounded-[0.625rem] bg-[#00A651] text-white"
           >
             Go to Dashboard
           </Button>

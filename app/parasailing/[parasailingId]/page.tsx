@@ -117,7 +117,7 @@ export default async function RestaurantInfoPage({
             searchParams.tripId
           }&parasailingId=${params.parasailingId}`}
         >
-          <Button>Book Parasailing Service</Button>
+          <Button>Book a Package</Button>
         </Link>
       </div>
     </section>
