@@ -61,7 +61,7 @@ export default function AboutPage() {
             practices ensures that your journeys not only benefit you but also
             contribute positively to the destinations you explore.
           </p>
-          <p className="text-2xl text-black">
+          <p className="text-3xl text-black">
             Embark on a journey beyond the ordinary with TripFlair. Let us be
             your compass, guiding you to extraordinary destinations and
             unforgettable memories. Your adventure begins here.
